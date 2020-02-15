@@ -1,26 +1,28 @@
 package com.blagoy.officemaps.domain;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.List;
 
 @Entity
-@Document(collection = "Floor")
+@Table
 public class Floor {
     @Id
     private long id;
 
-    @Field(value = "number")
     private long number;
     @NotNull
     @NotEmpty
-    @Field(value = "objectMaps")
     private List<ObjectMap> objectMaps;
+
+    @CreationTimestamp
+    private Date creationTime;
 
     public long getId() {
         return id;

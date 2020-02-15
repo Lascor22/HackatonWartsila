@@ -1,17 +1,18 @@
 package com.blagoy.officemaps.domain;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.List;
 
 @Entity
-@Document(collection = "Event")
+@Table
 public class Event {
     @Id
     @GeneratedValue
@@ -19,13 +20,22 @@ public class Event {
 
     @NotEmpty
     @NotNull
-    @Field(value = "EmployeeList")
     private List<Employee> employeeList;
 
     @NotNull
     @NotEmpty
-    @Field(value = "Room")
     private ObjectMap room;
+
+    public Date getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(Date creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    @CreationTimestamp
+    private Date creationTime;
 
     public long getId() {
         return id;

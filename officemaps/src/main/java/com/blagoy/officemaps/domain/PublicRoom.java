@@ -1,21 +1,24 @@
 package com.blagoy.officemaps.domain;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
-@Document(collection = "PublicRoom")
+@Table
 public class PublicRoom extends ObjectMap {
     @Id
     @GeneratedValue
     private long id;
 
-    @Field(value = "PublicRoomType")
     private PublicRoomType type;
+
+    @CreationTimestamp
+    private Date creationTime;
 
     public PublicRoomType getType() {
         return type;

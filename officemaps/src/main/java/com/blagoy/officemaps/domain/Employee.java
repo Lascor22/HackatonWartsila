@@ -1,30 +1,38 @@
 package com.blagoy.officemaps.domain;
 
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
-@Document(collection = "Employee")
+@Table
 public class Employee {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotEmpty
     @NotNull
-    @Field(value = "Name")
     private String name;
 
     @NotNull
     @NotEmpty
-    @Field(value = "WorkingTable")
     private WorkingTable workingTable;
+
+    public Date getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(Date creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    @CreationTimestamp
+    private Date creationTime;
 
     public WorkingTable getWorkingTable() {
         return workingTable;
