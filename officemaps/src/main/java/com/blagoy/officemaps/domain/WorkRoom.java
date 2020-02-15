@@ -1,17 +1,16 @@
 package com.blagoy.officemaps.domain;
 
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.List;
 
 @Entity
-@Document(collection = "WorkRoom")
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "number"))
 public class WorkRoom extends ObjectMap {
     @Id
     @GeneratedValue
@@ -38,13 +37,18 @@ public class WorkRoom extends ObjectMap {
         this.number = number;
     }
 
+    @CreationTimestamp
+    private Date creationTime;
+
     @NotEmpty
     @NotNull
+    @OneToMany
     @Field(value = "Employees")
     private List<Employee> employees;
 
     @NotNull
     @NotEmpty
+    @OneToMany
     @Field(value = "WorkingTables")
     private List<WorkingTable> workingTables;
 
@@ -62,5 +66,13 @@ public class WorkRoom extends ObjectMap {
 
     public void setWorkingTables(List<WorkingTable> workingTables) {
         this.workingTables = workingTables;
+    }
+
+    public Date getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(Date creationTime) {
+        this.creationTime = creationTime;
     }
 }
