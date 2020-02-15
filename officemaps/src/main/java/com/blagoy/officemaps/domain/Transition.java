@@ -1,14 +1,14 @@
 package com.blagoy.officemaps.domain;
 
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@Document(collection = "Transition")
+@Table
 public class Transition extends ObjectMap {
     @Id
     @GeneratedValue
