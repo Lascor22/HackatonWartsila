@@ -21,4 +21,8 @@ public class FloorService {
     public Floor findById(long id) {
         return floorRepository.findById(id).orElse(null);
     }
+
+    public Floor findByNumber(long number) {
+        return floorRepository.findByNumber(number);
+    }
 }
