@@ -15,14 +15,8 @@ public class Event {
     @GeneratedValue
     private long id;
 
-    @NotEmpty
-    @NotNull
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Employee> employeeList;
-
-//    @NotNull
-//    @NotEmpty
-//    private Object room;
 
     public Date getCreationTime() {
         return creationTime;
@@ -51,15 +45,4 @@ public class Event {
         this.employeeList = employeeList;
     }
 
-//    public Object getRoom() {
-//        return room;
-//    }
-
-//    public void setRoom(PublicRoom room) {
-//        this.room = room;
-//    }
-//
-//    public void setRoom(WorkRoom room) {
-//        this.room = room;
-//    }
 }

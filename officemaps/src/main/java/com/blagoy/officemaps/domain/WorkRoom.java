@@ -16,8 +16,6 @@ public class WorkRoom {
     @GeneratedValue
     private long id;
 
-    @NotNull
-    @NotEmpty
     @JoinColumn(name = "number", nullable = false)
     private long number;
 
@@ -40,39 +38,25 @@ public class WorkRoom {
     @CreationTimestamp
     private Date creationTime;
 
-    @NotEmpty
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private Floor floor;
 
-    @NotEmpty
-    @NotNull
     @OneToMany(mappedBy = "workRoom", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Employee> employees;
 
-    @NotNull
-    @NotEmpty
     @OneToMany(mappedBy = "workRoom", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<WorkingTable> workingTables;
 
-    @NotNull
-    @NotEmpty
     @JoinColumn(name = "coordinateX", nullable = false)
     private double coordinateX;
 
-    @NotNull
-    @NotEmpty
     @JoinColumn(name = "coordinateX", nullable = false)
     private double coordinateY;
 
-    @NotNull
-    @NotEmpty
     @JoinColumn(name = "height", nullable = false)
     private double height;
 
-    @NotNull
-    @NotEmpty
     @JoinColumn(name = "width", nullable = false)
     private double width;
 

@@ -3,8 +3,6 @@ package com.blagoy.officemaps.domain;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -12,30 +10,31 @@ import java.util.List;
 @Table
 public class Floor {
     @Id
+    @GeneratedValue
     private long id;
 
-    @NotEmpty
-    @NotNull
     @JoinColumn(name = "number", nullable = false)
     private long number;
 
-    @NotNull
-    @NotEmpty
     @OneToMany(mappedBy = "floor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PublicRoom> publicRooms;
 
-    @NotNull
-    @NotEmpty
     @OneToMany(mappedBy = "floor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<WorkRoom> workRooms;
 
-    @NotNull
-    @NotEmpty
     @OneToMany(mappedBy = "floor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Transition> transitions;
 
     @CreationTimestamp
     private Date creationTime;
+
+    public Date getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(Date creationTime) {
+        this.creationTime = creationTime;
+    }
 
     public long getId() {
         return id;

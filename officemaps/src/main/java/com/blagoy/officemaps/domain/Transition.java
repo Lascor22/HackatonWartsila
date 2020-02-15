@@ -12,31 +12,21 @@ public class Transition {
     @GeneratedValue
     private long id;
 
-    @NotNull
-    @NotEmpty
     @ManyToOne(fetch = FetchType.LAZY)
     private Floor floor;
 
     @JoinColumn(name = "type", nullable = false)
     private TransitionType type;
 
-    @NotNull
-    @NotEmpty
     @JoinColumn(name = "coordinateX", nullable = false)
     private double coordinateX;
 
-    @NotNull
-    @NotEmpty
     @JoinColumn(name = "coordinateX", nullable = false)
     private double coordinateY;
 
-    @NotNull
-    @NotEmpty
     @JoinColumn(name = "height", nullable = false)
     private double height;
 
-    @NotNull
-    @NotEmpty
     @JoinColumn(name = "width", nullable = false)
     private double width;
 

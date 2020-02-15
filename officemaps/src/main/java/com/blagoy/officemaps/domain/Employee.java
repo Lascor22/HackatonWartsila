@@ -19,13 +19,9 @@ public class Employee {
     @NotNull
     private String name;
 
-    @NotNull
-    @NotEmpty
     @OneToOne
     private WorkingTable workingTable;
 
-    @NotNull
-    @NotEmpty
     @ManyToOne(fetch = FetchType.LAZY)
     private WorkRoom workRoom;
 

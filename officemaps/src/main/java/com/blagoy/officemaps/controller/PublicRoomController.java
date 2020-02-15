@@ -2,11 +2,10 @@ package com.blagoy.officemaps.controller;
 
 
 import com.blagoy.officemaps.domain.PublicRoom;
+import com.blagoy.officemaps.domain.PublicRoomType;
+import com.blagoy.officemaps.service.FloorService;
 import com.blagoy.officemaps.service.PublicRoomService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,9 +13,11 @@ import java.util.List;
 @RequestMapping("/api/0")
 public class PublicRoomController {
     private final PublicRoomService publicRoomService;
+    private final FloorService floorService;
 
-    public PublicRoomController(PublicRoomService publicRoomService) {
+    public PublicRoomController(PublicRoomService publicRoomService, FloorService floorService) {
         this.publicRoomService = publicRoomService;
+        this.floorService = floorService;
     }
 
     @GetMapping("publicRoom")
@@ -27,6 +28,17 @@ public class PublicRoomController {
     @GetMapping("publicRoom/{id}")
     public PublicRoom findById(@PathVariable("id") long id) {
         return publicRoomService.findById(id);
+    }
+
+    @PostMapping("publicRoom")
+    public void createRoom(long floorNumber, String type, double x, double y, double height, double width) {
+        PublicRoomType publicRoomType;
+        if ("Toilet".equals(type)) {
+            publicRoomType = PublicRoomType.Toilet;
+        } else {
+            publicRoomType = PublicRoomType.CoffeePoint;
+        }
+        publicRoomService.createRoom(floorService.findByNumber(floorNumber), publicRoomType, x, y, height, width);
     }
 
 }

@@ -21,4 +21,14 @@ public class FloorService {
     public Floor findById(long id) {
         return floorRepository.findById(id).orElse(null);
     }
+
+    public Floor findByNumber(long number) {
+        return floorRepository.findByNumber(number);
+    }
+
+    public void createFloor(long number) {
+        Floor floor = new Floor();
+        floor.setNumber(number);
+        floorRepository.save(floor);
+    }
 }

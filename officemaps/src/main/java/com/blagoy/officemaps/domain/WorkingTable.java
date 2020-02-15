@@ -2,8 +2,6 @@ package com.blagoy.officemaps.domain;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table
@@ -11,8 +9,7 @@ public class WorkingTable {
     @Id
     @GeneratedValue
     private long id;
-    @NotEmpty
-    @NotNull
+
     @JoinColumn(name = "number", nullable = false)
     private long number;
 
@@ -24,13 +21,9 @@ public class WorkingTable {
         this.number = number;
     }
 
-    @NotNull
-    @NotEmpty
     @OneToOne
     private Employee employee;
 
-    @NotEmpty
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private WorkRoom workRoom;
 
