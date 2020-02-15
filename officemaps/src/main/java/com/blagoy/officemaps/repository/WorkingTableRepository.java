@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface WorkingTableRepository extends MongoRepository<WorkingTable, Long> {
+    public WorkingTable findByNumber(long number);
 }

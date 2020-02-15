@@ -16,6 +16,17 @@ public class WorkingTable {
     @GeneratedValue
     private long id;
 
+    @Field(value = "number")
+    private long number;
+
+    public long getNumber() {
+        return number;
+    }
+
+    public void setNumber(long number) {
+        this.number = number;
+    }
+
     @NotNull
     @NotEmpty
     @Field(value = "Employee")

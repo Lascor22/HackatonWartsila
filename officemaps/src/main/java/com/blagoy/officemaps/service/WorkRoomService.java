@@ -22,4 +22,8 @@ public class WorkRoomService {
     public WorkRoom findById(long id) {
         return workRoomRepository.findById(id).orElse(null);
     }
+
+    public WorkRoom findByNumber(long number) {
+        return workRoomRepository.findByNumber(number);
+    }
 }

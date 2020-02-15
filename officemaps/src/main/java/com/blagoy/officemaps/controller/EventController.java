@@ -24,8 +24,9 @@ public class EventController {
     public void createEvent() {
         //TODO
     }
+
     @GetMapping("event/{id}")
-    public Event findById(@PathVariable long id) {
+    public Event findById(@PathVariable("id") long id) {
         return eventService.findById(id);
     }
 }

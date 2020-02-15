@@ -1,9 +1,7 @@
 package com.blagoy.officemaps.controller;
 
 
-import com.blagoy.officemaps.domain.Employee;
 import com.blagoy.officemaps.domain.WorkRoom;
-import com.blagoy.officemaps.service.EmployeeService;
 import com.blagoy.officemaps.service.WorkRoomService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,14 +19,18 @@ public class WorkRoomController {
         this.workRoomService = workRoomService;
     }
 
-    @GetMapping("employee")
+    @GetMapping("workingrooms")
     public List<WorkRoom> findAll() {
         return workRoomService.findAll();
     }
 
-    @GetMapping("employee/{id}")
+    @GetMapping("workingroom/{id}")
     public WorkRoom findById(@PathVariable("id") long id) {
         return workRoomService.findById(id);
     }
 
+    @GetMapping("workingroom/{number}")
+    public WorkRoom findByNumber(@PathVariable("number") long number) {
+        return workRoomService.findByNumber(number);
+    }
 }

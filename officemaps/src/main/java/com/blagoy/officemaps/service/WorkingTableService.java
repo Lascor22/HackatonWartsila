@@ -21,4 +21,8 @@ public class WorkingTableService {
     public WorkingTable findById(long id) {
         return workingTableRepository.findById(id).orElse(null);
     }
+
+    public WorkingTable findByNumber(long number) {
+        return workingTableRepository.findByNumber(number);
+    }
 }

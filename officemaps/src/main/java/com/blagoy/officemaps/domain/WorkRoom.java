@@ -17,6 +17,27 @@ public class WorkRoom extends ObjectMap {
     @GeneratedValue
     private long id;
 
+    @Field(value = "number")
+    private long number;
+
+    @Override
+    public long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getNumber() {
+        return number;
+    }
+
+    public void setNumber(long number) {
+        this.number = number;
+    }
+
     @NotEmpty
     @NotNull
     @Field(value = "Employees")
