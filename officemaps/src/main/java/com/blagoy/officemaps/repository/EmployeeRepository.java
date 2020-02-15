@@ -1,10 +1,10 @@
 package com.blagoy.officemaps.repository;
 
 import com.blagoy.officemaps.domain.Employee;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EmployeeRepository extends MongoRepository<Employee, Long> {
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
 }
