@@ -1,21 +1,29 @@
 package com.blagoy.officemaps.domain;
 
-import javax.persistence.*;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(
-        indexes = @Index(columnList = "creationTime")
-)
+@Document(collation = "Employee")
 public class Employee {
     @Id
     @GeneratedValue
     private long id;
+
     @NotEmpty
     @NotNull
+    @Field(value = "Name")
     private String name;
 
+    @NotNull
+    @NotEmpty
+    @Field(value = "WorkingTable")
     private WorkingTable workingTable;
 
     public WorkingTable getWorkingTable() {

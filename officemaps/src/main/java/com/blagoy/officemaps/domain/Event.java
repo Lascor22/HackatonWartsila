@@ -8,31 +8,24 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
-@Document(value = "WorkingTable")
-public class WorkingTable {
+@Document(value = "Event")
+public class Event {
     @Id
     @GeneratedValue
     private long id;
 
-    @NotNull
-    @NotEmpty
-    @Field(value = "Employee")
-    private Employee employee;
-
     @NotEmpty
     @NotNull
-    @Field(value = "WorkRoom")
-    private WorkRoom workRoom;
+    @Field(value = "EmployeeList")
+    private List<Employee> employeeList;
 
-    public WorkRoom getWorkRoom() {
-        return workRoom;
-    }
-
-    public void setWorkRoom(WorkRoom workRoom) {
-        this.workRoom = workRoom;
-    }
+    @NotNull
+    @NotEmpty
+    @Field(value = "Room")
+    private ObjectMap room;
 
     public long getId() {
         return id;
@@ -42,11 +35,19 @@ public class WorkingTable {
         this.id = id;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public List<Employee> getEmployeeList() {
+        return employeeList;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
+    }
+
+    public ObjectMap getRoom() {
+        return room;
+    }
+
+    public void setRoom(ObjectMap room) {
+        this.room = room;
     }
 }
