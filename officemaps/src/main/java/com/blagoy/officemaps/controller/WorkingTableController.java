@@ -1,5 +1,6 @@
 package com.blagoy.officemaps.controller;
 
+import com.blagoy.officemaps.domain.Employee;
 import com.blagoy.officemaps.domain.WorkingTable;
 import com.blagoy.officemaps.service.WorkingTableService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +25,13 @@ public class WorkingTableController {
     }
 
     @GetMapping("workingTable/{id}")
-    public WorkingTable findById(@PathVariable long id) {
+    public WorkingTable findById(@PathVariable("id") long id) {
         return workingTableService.findById(id);
+    }
+
+    @GetMapping("workingTable/{number}/employee")
+    public Employee getEmployeeByWorkingTableNumber(@PathVariable("number") long number) {
+        return workingTableService.findByNumber(number).getEmployee();
     }
 
 }

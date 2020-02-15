@@ -24,7 +24,7 @@ public class TransitionController {
     }
 
     @GetMapping("transition/{id}")
-    public Transition findById(@PathVariable long id) {
+    public Transition findById(@PathVariable("id") long id) {
         return transitionService.findById(id);
     }
 }

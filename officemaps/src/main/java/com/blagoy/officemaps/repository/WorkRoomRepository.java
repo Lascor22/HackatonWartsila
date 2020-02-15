@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface WorkRoomRepository extends MongoRepository<WorkRoom, Long> {
+    public WorkRoom findByNumber(long number);
 }
