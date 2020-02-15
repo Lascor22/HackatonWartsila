@@ -1,17 +1,15 @@
 package com.blagoy.officemaps.domain;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.List;
 
 @Entity
-@Document(collection = "Event")
+@Table
 public class Event {
     @Id
     @GeneratedValue
@@ -19,13 +17,23 @@ public class Event {
 
     @NotEmpty
     @NotNull
-    @Field(value = "EmployeeList")
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Employee> employeeList;
 
-    @NotNull
-    @NotEmpty
-    @Field(value = "Room")
-    private ObjectMap room;
+//    @NotNull
+//    @NotEmpty
+//    private Object room;
+
+    public Date getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(Date creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    @CreationTimestamp
+    private Date creationTime;
 
     public long getId() {
         return id;
@@ -43,11 +51,15 @@ public class Event {
         this.employeeList = employeeList;
     }
 
-    public ObjectMap getRoom() {
-        return room;
-    }
+//    public Object getRoom() {
+//        return room;
+//    }
 
-    public void setRoom(ObjectMap room) {
-        this.room = room;
-    }
+//    public void setRoom(PublicRoom room) {
+//        this.room = room;
+//    }
+//
+//    public void setRoom(WorkRoom room) {
+//        this.room = room;
+//    }
 }

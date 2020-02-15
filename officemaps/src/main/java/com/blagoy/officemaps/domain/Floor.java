@@ -1,26 +1,41 @@
 package com.blagoy.officemaps.domain;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.List;
 
 @Entity
-@Document(collection = "Floor")
+@Table
 public class Floor {
     @Id
     private long id;
 
-    @Field(value = "number")
+    @NotEmpty
+    @NotNull
+    @JoinColumn(name = "number", nullable = false)
     private long number;
+
     @NotNull
     @NotEmpty
-    @Field(value = "objectMaps")
-    private List<ObjectMap> objectMaps;
+    @OneToMany(mappedBy = "floor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<PublicRoom> publicRooms;
+
+    @NotNull
+    @NotEmpty
+    @OneToMany(mappedBy = "floor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<WorkRoom> workRooms;
+
+    @NotNull
+    @NotEmpty
+    @OneToMany(mappedBy = "floor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Transition> transitions;
+
+    @CreationTimestamp
+    private Date creationTime;
 
     public long getId() {
         return id;
@@ -38,11 +53,27 @@ public class Floor {
         this.number = number;
     }
 
-    public List<ObjectMap> getObjectMaps() {
-        return objectMaps;
+    public List<PublicRoom> getPublicRooms() {
+        return publicRooms;
     }
 
-    public void setObjectMaps(List<ObjectMap> objectMaps) {
-        this.objectMaps = objectMaps;
+    public void setPublicRooms(List<PublicRoom> publicRooms) {
+        this.publicRooms = publicRooms;
+    }
+
+    public List<WorkRoom> getWorkRooms() {
+        return workRooms;
+    }
+
+    public void setWorkRooms(List<WorkRoom> workRooms) {
+        this.workRooms = workRooms;
+    }
+
+    public List<Transition> getTransitions() {
+        return transitions;
+    }
+
+    public void setTransitions(List<Transition> transitions) {
+        this.transitions = transitions;
     }
 }

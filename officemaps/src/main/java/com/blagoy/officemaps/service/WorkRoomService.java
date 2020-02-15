@@ -1,5 +1,6 @@
 package com.blagoy.officemaps.service;
 
+import com.blagoy.officemaps.domain.Employee;
 import com.blagoy.officemaps.domain.WorkRoom;
 import com.blagoy.officemaps.repository.WorkRoomRepository;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,9 @@ public class WorkRoomService {
 
     public WorkRoom findByNumber(long number) {
         return workRoomRepository.findByNumber(number);
+    }
+
+    public List<Employee> findAllEmployees(long number) {
+        return findByNumber(number).getEmployees();
     }
 }

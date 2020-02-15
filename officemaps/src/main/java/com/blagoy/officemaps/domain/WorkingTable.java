@@ -1,22 +1,19 @@
 package com.blagoy.officemaps.domain;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Document(collection = "WorkingTable")
+@Table
 public class WorkingTable {
     @Id
     @GeneratedValue
     private long id;
-
-    @Field(value = "number")
+    @NotEmpty
+    @NotNull
+    @JoinColumn(name = "number", nullable = false)
     private long number;
 
     public long getNumber() {
@@ -29,12 +26,12 @@ public class WorkingTable {
 
     @NotNull
     @NotEmpty
-    @Field(value = "Employee")
+    @OneToOne
     private Employee employee;
 
     @NotEmpty
     @NotNull
-    @Field(value = "WorkRoom")
+    @ManyToOne(fetch = FetchType.LAZY)
     private WorkRoom workRoom;
 
     public WorkRoom getWorkRoom() {

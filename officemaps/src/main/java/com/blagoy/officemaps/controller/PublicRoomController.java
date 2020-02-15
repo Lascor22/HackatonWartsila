@@ -1,9 +1,7 @@
 package com.blagoy.officemaps.controller;
 
 
-import com.blagoy.officemaps.domain.Employee;
 import com.blagoy.officemaps.domain.PublicRoom;
-import com.blagoy.officemaps.service.EmployeeService;
 import com.blagoy.officemaps.service.PublicRoomService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,12 +19,12 @@ public class PublicRoomController {
         this.publicRoomService = publicRoomService;
     }
 
-    @GetMapping("employee")
+    @GetMapping("publicRoom")
     public List<PublicRoom> findAll() {
         return publicRoomService.findAll();
     }
 
-    @GetMapping("employee/{id}")
+    @GetMapping("publicRoom/{id}")
     public PublicRoom findById(@PathVariable("id") long id) {
         return publicRoomService.findById(id);
     }
