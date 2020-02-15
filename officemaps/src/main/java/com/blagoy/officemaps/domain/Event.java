@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-@Document(value = "Event")
+@Document(collection = "Event")
 public class Event {
     @Id
     @GeneratedValue

@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-@Document(value = "WorkRoom")
+@Document(collection = "WorkRoom")
 public class WorkRoom extends ObjectMap {
     @Id
     @GeneratedValue

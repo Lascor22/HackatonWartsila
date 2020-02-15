@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-@Document(value = "PublicRoom")
+@Document(collection = "PublicRoom")
 public class PublicRoom extends ObjectMap {
     @Id
     @GeneratedValue

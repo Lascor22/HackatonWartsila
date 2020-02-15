@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-@Document(value = "Transition")
+@Document(collection = "Transition")
 public class Transition extends ObjectMap {
     @Id
     @GeneratedValue

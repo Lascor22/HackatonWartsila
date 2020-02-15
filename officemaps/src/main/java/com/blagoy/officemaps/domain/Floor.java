@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-@Document(value = "Floor")
+@Document(collection = "Floor")
 public class Floor {
     @Id
     private long id;

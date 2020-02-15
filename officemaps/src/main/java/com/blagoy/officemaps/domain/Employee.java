@@ -10,7 +10,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Document(collation = "Employee")
+@Document(collection = "Employee")
 public class Employee {
     @Id
     @GeneratedValue
