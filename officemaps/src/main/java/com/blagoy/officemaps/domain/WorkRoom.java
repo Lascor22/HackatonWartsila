@@ -1,7 +1,6 @@
 package com.blagoy.officemaps.domain;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -16,7 +15,6 @@ public class WorkRoom extends ObjectMap {
     @GeneratedValue
     private long id;
 
-    @Field(value = "number")
     private long number;
 
     @Override
@@ -42,14 +40,10 @@ public class WorkRoom extends ObjectMap {
 
     @NotEmpty
     @NotNull
-    @OneToMany
-    @Field(value = "Employees")
     private List<Employee> employees;
 
     @NotNull
     @NotEmpty
-    @OneToMany
-    @Field(value = "WorkingTables")
     private List<WorkingTable> workingTables;
 
     public List<Employee> getEmployees() {

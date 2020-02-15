@@ -1,6 +1,5 @@
 package com.blagoy.officemaps.domain;
 
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -13,7 +12,6 @@ public class WorkingTable {
     @GeneratedValue
     private long id;
 
-    @Field(value = "number")
     private long number;
 
     public long getNumber() {
@@ -26,12 +24,10 @@ public class WorkingTable {
 
     @NotNull
     @NotEmpty
-    @Field(value = "Employee")
     private Employee employee;
 
     @NotEmpty
     @NotNull
-    @Field(value = "WorkRoom")
     private WorkRoom workRoom;
 
     public WorkRoom getWorkRoom() {

@@ -1,12 +1,12 @@
 package com.blagoy.officemaps.domain;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table
@@ -22,6 +22,8 @@ public class Employee {
     @NotNull
     @NotEmpty
     private WorkingTable workingTable;
+
+    private List<Event> events;
 
     public Date getCreationTime() {
         return creationTime;
@@ -56,5 +58,13 @@ public class Employee {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
     }
 }

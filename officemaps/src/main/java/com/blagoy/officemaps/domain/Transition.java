@@ -1,11 +1,8 @@
 package com.blagoy.officemaps.domain;
 
-import org.springframework.data.mongodb.core.mapping.Field;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table
@@ -14,7 +11,10 @@ public class Transition extends ObjectMap {
     @GeneratedValue
     private long id;
 
-    @Field(value = "TransitionType")
+    @NotEmpty
+    @NotNull
+    private Floor floor;
+
     private TransitionType type;
 
     public TransitionType getType() {
