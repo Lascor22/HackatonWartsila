@@ -17,10 +17,12 @@ public class Event {
 
     @NotEmpty
     @NotNull
+    @ManyToMany
     private List<Employee> employeeList;
 
     @NotNull
     @NotEmpty
+    @OneToOne
     private ObjectMap room;
 
     public Date getCreationTime() {

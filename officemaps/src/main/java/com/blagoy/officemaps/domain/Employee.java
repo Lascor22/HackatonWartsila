@@ -21,6 +21,7 @@ public class Employee {
 
     @NotNull
     @NotEmpty
+    @OneToOne
     private WorkingTable workingTable;
 
     private List<Event> events;

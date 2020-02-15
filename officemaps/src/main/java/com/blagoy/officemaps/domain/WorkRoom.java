@@ -15,6 +15,9 @@ public class WorkRoom extends ObjectMap {
     @GeneratedValue
     private long id;
 
+    @NotNull
+    @NotEmpty
+    @JoinColumn(name = "number", nullable = false)
     private long number;
 
     @Override
@@ -40,10 +43,12 @@ public class WorkRoom extends ObjectMap {
 
     @NotEmpty
     @NotNull
+    @OneToMany(mappedBy = "workRoom", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Employee> employees;
 
     @NotNull
     @NotEmpty
+    @OneToMany(mappedBy = "workRoom", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<WorkingTable> workingTables;
 
     public List<Employee> getEmployees() {

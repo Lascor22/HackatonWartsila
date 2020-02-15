@@ -11,7 +11,9 @@ public class WorkingTable {
     @Id
     @GeneratedValue
     private long id;
-
+    @NotEmpty
+    @NotNull
+    @JoinColumn(name = "number", nullable = false)
     private long number;
 
     public long getNumber() {
@@ -24,10 +26,12 @@ public class WorkingTable {
 
     @NotNull
     @NotEmpty
+    @OneToOne
     private Employee employee;
 
     @NotEmpty
     @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
     private WorkRoom workRoom;
 
     public WorkRoom getWorkRoom() {

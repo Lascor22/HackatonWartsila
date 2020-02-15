@@ -1,8 +1,7 @@
 package com.blagoy.officemaps.domain;
 
+
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table
@@ -10,11 +9,7 @@ public class Transition extends ObjectMap {
     @Id
     @GeneratedValue
     private long id;
-
-    @NotEmpty
-    @NotNull
-    private Floor floor;
-
+    @JoinColumn(name = "type", nullable = false)
     private TransitionType type;
 
     public TransitionType getType() {
