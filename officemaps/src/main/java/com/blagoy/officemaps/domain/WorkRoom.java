@@ -1,5 +1,6 @@
 package com.blagoy.officemaps.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -42,6 +43,7 @@ public class WorkRoom {
     @NotEmpty
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Floor floor;
 
     @NotEmpty
