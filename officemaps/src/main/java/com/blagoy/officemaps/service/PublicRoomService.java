@@ -8,17 +8,17 @@ import java.util.List;
 
 @Service
 public class PublicRoomService {
-    private final PublicRoomRepository floorRepository;
+    private final PublicRoomRepository publicRoomRepository;
 
-    public PublicRoomService(PublicRoomRepository floorRepository) {
-        this.floorRepository = floorRepository;
+    public PublicRoomService(PublicRoomRepository publicRoomRepository) {
+        this.publicRoomRepository = publicRoomRepository;
     }
 
     public List<PublicRoom> findAll() {
-        return floorRepository.findAll();
+        return publicRoomRepository.findAll();
     }
 
     public PublicRoom findById(long id) {
-        return floorRepository.findById(id).orElse(null);
+        return publicRoomRepository.findById(id).orElse(null);
     }
 }
