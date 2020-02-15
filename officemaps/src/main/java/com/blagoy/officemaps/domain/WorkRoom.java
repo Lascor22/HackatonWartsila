@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "number"))
-public class WorkRoom extends ObjectMap {
+public class WorkRoom {
     @Id
     @GeneratedValue
     private long id;
@@ -20,12 +20,10 @@ public class WorkRoom extends ObjectMap {
     @JoinColumn(name = "number", nullable = false)
     private long number;
 
-    @Override
     public long getId() {
         return id;
     }
 
-    @Override
     public void setId(long id) {
         this.id = id;
     }
@@ -40,6 +38,11 @@ public class WorkRoom extends ObjectMap {
 
     @CreationTimestamp
     private Date creationTime;
+
+    @NotEmpty
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Floor floor;
 
     @NotEmpty
     @NotNull
@@ -73,5 +76,13 @@ public class WorkRoom extends ObjectMap {
 
     public void setCreationTime(Date creationTime) {
         this.creationTime = creationTime;
+    }
+
+    public Floor getFloor() {
+        return floor;
+    }
+
+    public void setFloor(Floor floor) {
+        this.floor = floor;
     }
 }

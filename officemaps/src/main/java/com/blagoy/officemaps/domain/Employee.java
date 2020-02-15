@@ -1,6 +1,7 @@
 package com.blagoy.officemaps.domain;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -24,6 +25,15 @@ public class Employee {
     @OneToOne
     private WorkingTable workingTable;
 
+    @NotNull
+    @NotEmpty
+    @ManyToOne(fetch = FetchType.LAZY)
+    private WorkRoom workRoom;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "employee_event",
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "event_id"))
     private List<Event> events;
 
     public Date getCreationTime() {

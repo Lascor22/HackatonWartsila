@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Entity
 @Table
-public class PublicRoom extends ObjectMap {
+public class PublicRoom {
     @Id
     @GeneratedValue
     private long id;
@@ -33,5 +33,29 @@ public class PublicRoom extends ObjectMap {
 
     public void setType(PublicRoomType type) {
         this.type = type;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Floor getFloor() {
+        return floor;
+    }
+
+    public void setFloor(Floor floor) {
+        this.floor = floor;
+    }
+
+    public Date getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(Date creationTime) {
+        this.creationTime = creationTime;
     }
 }

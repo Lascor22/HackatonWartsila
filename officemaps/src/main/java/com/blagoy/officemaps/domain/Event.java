@@ -17,13 +17,13 @@ public class Event {
 
     @NotEmpty
     @NotNull
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Employee> employeeList;
 
-    @NotNull
-    @NotEmpty
-    @OneToOne
-    private ObjectMap room;
+//    @NotNull
+//    @NotEmpty
+//    @OneToOne
+//    private ObjectMap room;
 
     public Date getCreationTime() {
         return creationTime;
@@ -52,11 +52,11 @@ public class Event {
         this.employeeList = employeeList;
     }
 
-    public ObjectMap getRoom() {
-        return room;
-    }
+//    public ObjectMap getRoom() {
+//        return room;
+//    }
 
-    public void setRoom(ObjectMap room) {
-        this.room = room;
-    }
+//    public void setRoom(ObjectMap room) {
+//        this.room = room;
+//    }
 }
