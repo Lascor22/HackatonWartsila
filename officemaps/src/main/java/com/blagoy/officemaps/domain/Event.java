@@ -22,8 +22,7 @@ public class Event {
 
 //    @NotNull
 //    @NotEmpty
-//    @OneToOne
-//    private ObjectMap room;
+//    private Object room;
 
     public Date getCreationTime() {
         return creationTime;
@@ -52,11 +51,15 @@ public class Event {
         this.employeeList = employeeList;
     }
 
-//    public ObjectMap getRoom() {
+//    public Object getRoom() {
 //        return room;
 //    }
 
-//    public void setRoom(ObjectMap room) {
+//    public void setRoom(PublicRoom room) {
+//        this.room = room;
+//    }
+//
+//    public void setRoom(WorkRoom room) {
 //        this.room = room;
 //    }
 }

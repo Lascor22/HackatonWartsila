@@ -54,6 +54,58 @@ public class WorkRoom {
     @OneToMany(mappedBy = "workRoom", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<WorkingTable> workingTables;
 
+    @NotNull
+    @NotEmpty
+    @JoinColumn(name = "coordinateX", nullable = false)
+    private double coordinateX;
+
+    @NotNull
+    @NotEmpty
+    @JoinColumn(name = "coordinateX", nullable = false)
+    private double coordinateY;
+
+    @NotNull
+    @NotEmpty
+    @JoinColumn(name = "height", nullable = false)
+    private double height;
+
+    @NotNull
+    @NotEmpty
+    @JoinColumn(name = "width", nullable = false)
+    private double width;
+
+    public double getCoordinateX() {
+        return coordinateX;
+    }
+
+    public void setCoordinateX(double coordinateX) {
+        this.coordinateX = coordinateX;
+    }
+
+    public double getCoordinateY() {
+        return coordinateY;
+    }
+
+    public void setCoordinateY(double coordinateY) {
+        this.coordinateY = coordinateY;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
     public List<Employee> getEmployees() {
         return employees;
     }
