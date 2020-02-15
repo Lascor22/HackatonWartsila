@@ -25,10 +25,4 @@ public class FloorService {
     public Floor findByNumber(long number) {
         return floorRepository.findByNumber(number);
     }
-
-    public void createFloor(long number) {
-        Floor floor = new Floor();
-        floor.setNumber(number);
-        floorRepository.save(floor);
-    }
 }

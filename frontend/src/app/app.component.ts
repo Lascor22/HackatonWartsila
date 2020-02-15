@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {ModalComponent} from './office/modal/modal.component';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'frontend';
+  clickX: number;
+  clickY: number;
+
+  constructor(private matDialog: MatDialog) {
+  }
 }

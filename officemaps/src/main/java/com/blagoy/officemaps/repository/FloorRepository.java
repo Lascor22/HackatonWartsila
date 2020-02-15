@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FloorRepository extends JpaRepository<Floor, Long> {
+
     public Floor findByNumber(long number);
 }

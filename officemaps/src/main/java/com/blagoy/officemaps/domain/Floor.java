@@ -3,6 +3,8 @@ package com.blagoy.officemaps.domain;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -10,31 +12,20 @@ import java.util.List;
 @Table
 public class Floor {
     @Id
-    @GeneratedValue
     private long id;
 
+    @NotEmpty
+    @NotNull
     @JoinColumn(name = "number", nullable = false)
     private long number;
 
-    @OneToMany(mappedBy = "floor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<PublicRoom> publicRooms;
-
-    @OneToMany(mappedBy = "floor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<WorkRoom> workRooms;
-
-    @OneToMany(mappedBy = "floor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Transition> transitions;
+    @NotNull
+    @NotEmpty
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<ObjectMap> objectMaps;
 
     @CreationTimestamp
     private Date creationTime;
-
-    public Date getCreationTime() {
-        return creationTime;
-    }
-
-    public void setCreationTime(Date creationTime) {
-        this.creationTime = creationTime;
-    }
 
     public long getId() {
         return id;
@@ -52,27 +43,19 @@ public class Floor {
         this.number = number;
     }
 
-    public List<PublicRoom> getPublicRooms() {
-        return publicRooms;
+    public List<ObjectMap> getObjectMaps() {
+        return objectMaps;
     }
 
-    public void setPublicRooms(List<PublicRoom> publicRooms) {
-        this.publicRooms = publicRooms;
+    public void setObjectMaps(List<ObjectMap> objectMaps) {
+        this.objectMaps = objectMaps;
     }
 
-    public List<WorkRoom> getWorkRooms() {
-        return workRooms;
+    public Date getCreationTime() {
+        return creationTime;
     }
 
-    public void setWorkRooms(List<WorkRoom> workRooms) {
-        this.workRooms = workRooms;
-    }
-
-    public List<Transition> getTransitions() {
-        return transitions;
-    }
-
-    public void setTransitions(List<Transition> transitions) {
-        this.transitions = transitions;
+    public void setCreationTime(Date creationTime) {
+        this.creationTime = creationTime;
     }
 }
