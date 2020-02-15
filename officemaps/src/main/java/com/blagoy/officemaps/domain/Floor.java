@@ -21,18 +21,8 @@ public class Floor {
 
     @NotNull
     @NotEmpty
-    @OneToMany(mappedBy = "floor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<PublicRoom> publicRooms;
-
-    @NotNull
-    @NotEmpty
-    @OneToMany(mappedBy = "floor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<WorkRoom> workRooms;
-
-    @NotNull
-    @NotEmpty
-    @OneToMany(mappedBy = "floor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Transition> transitions;
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<ObjectMap> objectMaps;
 
     @CreationTimestamp
     private Date creationTime;
@@ -53,27 +43,19 @@ public class Floor {
         this.number = number;
     }
 
-    public List<PublicRoom> getPublicRooms() {
-        return publicRooms;
+    public List<ObjectMap> getObjectMaps() {
+        return objectMaps;
     }
 
-    public void setPublicRooms(List<PublicRoom> publicRooms) {
-        this.publicRooms = publicRooms;
+    public void setObjectMaps(List<ObjectMap> objectMaps) {
+        this.objectMaps = objectMaps;
     }
 
-    public List<WorkRoom> getWorkRooms() {
-        return workRooms;
+    public Date getCreationTime() {
+        return creationTime;
     }
 
-    public void setWorkRooms(List<WorkRoom> workRooms) {
-        this.workRooms = workRooms;
-    }
-
-    public List<Transition> getTransitions() {
-        return transitions;
-    }
-
-    public void setTransitions(List<Transition> transitions) {
-        this.transitions = transitions;
+    public void setCreationTime(Date creationTime) {
+        this.creationTime = creationTime;
     }
 }

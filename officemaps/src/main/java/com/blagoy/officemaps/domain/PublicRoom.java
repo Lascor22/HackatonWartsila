@@ -9,10 +9,7 @@ import java.util.Date;
 
 @Entity
 @Table
-public class PublicRoom {
-    @Id
-    @GeneratedValue
-    private long id;
+public class PublicRoom extends ObjectMap{
 
     @NotEmpty
     @NotNull
@@ -27,57 +24,6 @@ public class PublicRoom {
     @CreationTimestamp
     private Date creationTime;
 
-    @NotNull
-    @NotEmpty
-    @JoinColumn(name = "coordinateX", nullable = false)
-    private double coordinateX;
-
-    @NotNull
-    @NotEmpty
-    @JoinColumn(name = "coordinateX", nullable = false)
-    private double coordinateY;
-
-    @NotNull
-    @NotEmpty
-    @JoinColumn(name = "height", nullable = false)
-    private double height;
-
-    @NotNull
-    @NotEmpty
-    @JoinColumn(name = "width", nullable = false)
-    private double width;
-
-    public double getCoordinateX() {
-        return coordinateX;
-    }
-
-    public void setCoordinateX(double coordinateX) {
-        this.coordinateX = coordinateX;
-    }
-
-    public double getCoordinateY() {
-        return coordinateY;
-    }
-
-    public void setCoordinateY(double coordinateY) {
-        this.coordinateY = coordinateY;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public void setHeight(double height) {
-        this.height = height;
-    }
-
-    public double getWidth() {
-        return width;
-    }
-
-    public void setWidth(double width) {
-        this.width = width;
-    }
 
     public PublicRoomType getType() {
         return type;
@@ -85,14 +31,6 @@ public class PublicRoom {
 
     public void setType(PublicRoomType type) {
         this.type = type;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public Floor getFloor() {
@@ -110,4 +48,5 @@ public class PublicRoom {
     public void setCreationTime(Date creationTime) {
         this.creationTime = creationTime;
     }
+
 }

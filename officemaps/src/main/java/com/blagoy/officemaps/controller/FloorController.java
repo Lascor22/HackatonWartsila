@@ -27,24 +27,15 @@ public class FloorController {
         if (floor == null) {
             return null;
         }
-        for (WorkRoom workRoom : floor.getWorkRooms()) {
-            if (isCorrect(x, y, workRoom.getCoordinateX(), workRoom.getCoordinateY(), workRoom.getWidth(), workRoom.getHeight())) {
-                return workRoom;
-            }
-        }
-        for (PublicRoom publicRoom : floor.getPublicRooms()) {
-            if (isCorrect(x, y, publicRoom.getCoordinateX(), publicRoom.getCoordinateY(), publicRoom.getWidth(), publicRoom.getHeight())) {
-                return publicRoom;
-            }
-        }
-        for (Transition transition : floor.getTransitions()) {
-            if (isCorrect(x, y, transition.getCoordinateX(), transition.getCoordinateY(), transition.getWidth(), transition.getHeight()) && transition.getType() != TransitionType.Corridor) {
-                return transition;
-            }
-        }
 
         return null;
     }
+
+//    @GetMapping("floor/directions")
+//    public List<Pair<Double, Double>> getDirections(double firstX, double firstY, double secondX, double secondY, long number1, long number2) {
+//        Object firstRoom = getRoom(firstX, firstY, number1);
+//        Object secondRoom = getRoom(secondX, secondY, number2);
+//    }
 
     private boolean isCorrect(double x, double y, double roomX, double roomY, double roomW, double roomH) {
         return (x <= roomX && x >= roomX - roomW && y <= roomY && y >= roomY - roomH);
