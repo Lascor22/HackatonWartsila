@@ -33,7 +33,6 @@ public class Employee {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
     private WorkRoom workRoom;
 
     @ManyToMany(fetch = FetchType.LAZY)
