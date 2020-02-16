@@ -22,4 +22,8 @@ public class ObjectMapService {
     public ObjectMap findById(long id) {
         return objectMapRepository.findById(id).orElse(null);
     }
+
+    public void save(ObjectMap objectMaps) {
+        objectMapRepository.save(objectMaps);
+    }
 }

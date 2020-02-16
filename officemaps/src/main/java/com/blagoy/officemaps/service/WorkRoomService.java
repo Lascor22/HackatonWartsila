@@ -70,4 +70,5 @@ public class WorkRoomService extends ObjectMapService {
     public void save(WorkRoom workRoom) {
         workRoomRepository.save(workRoom);
     }
+
 }
