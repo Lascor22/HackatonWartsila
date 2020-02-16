@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "number"))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "number"), name = "work_room")
 public class WorkRoom extends ObjectMap {
 
     @JoinColumn(name = "number", nullable = false)

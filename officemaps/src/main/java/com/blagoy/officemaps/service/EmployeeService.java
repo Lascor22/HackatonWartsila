@@ -33,4 +33,8 @@ public class EmployeeService {
         employee.setWorkRoom(workRoom);
         employeeRepository.save(employee);
     }
+
+    public Employee findByName(String name) {
+        return employeeRepository.findByName(name);
+    }
 }

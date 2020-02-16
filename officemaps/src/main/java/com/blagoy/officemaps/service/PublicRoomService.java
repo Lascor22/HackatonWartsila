@@ -1,6 +1,7 @@
 package com.blagoy.officemaps.service;
 
 import com.blagoy.officemaps.domain.*;
+import com.blagoy.officemaps.form.PublicRoomForm;
 import com.blagoy.officemaps.repository.PublicRoomRepository;
 import org.springframework.stereotype.Service;
 
@@ -22,19 +23,15 @@ public class PublicRoomService {
         return publicRoomRepository.findById(id).orElse(null);
     }
 
-    public void createRoom(Floor floor, PublicRoomType publicRoomType, double x, double y, double height, double width,
-                           List<Door> doors, List<ObjectMap> neighbors) {
+    public void createRoom(Floor floor, PublicRoomForm publicRoomForm) {
         PublicRoom publicRoom = new PublicRoom();
-        Point point = new Point();
-        point.setX(x);
-        point.setY(y);
-        publicRoom.setPoint(point);
-        publicRoom.setHeight(height);
-        publicRoom.setWidth(width);
+        publicRoom.setPoint(publicRoomForm.getPoint());
+        publicRoom.setHeight(publicRoomForm.getHeight());
+        publicRoom.setWidth(publicRoomForm.getWidht());
         publicRoom.setFloor(floor);
-        publicRoom.setType(publicRoomType);
-        publicRoom.setDoors(doors);
-        publicRoom.setNeighbors(neighbors);
+        publicRoom.setType(publicRoomForm.getType());
+        publicRoom.setDoors(publicRoomForm.getDoors());
+        publicRoom.setNeighbors(publicRoomForm.getNeighbors());
         publicRoomRepository.save(publicRoom);
     }
 }

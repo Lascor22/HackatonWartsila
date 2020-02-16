@@ -8,8 +8,8 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-@Table
-public class PublicRoom extends ObjectMap{
+@Table(name = "public_room")
+public class PublicRoom extends ObjectMap {
 
     @NotEmpty
     @NotNull
