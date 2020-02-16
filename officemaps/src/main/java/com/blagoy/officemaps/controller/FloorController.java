@@ -40,49 +40,126 @@ public class FloorController {
         return null;
     }
 
+    private Point findClosestLeftStairOrLift(ObjectMap room, long number) {
+        Floor floor = findByNumber(number);
+        double minDist = Double.MAX_VALUE;
+        Point roomPoint = room.getPoint();
+        Point minPoint = new Point();
+        for (ObjectMap objectMap : floor.getObjectMaps()) {
+            if (objectMap instanceof Transition) {
+                Transition transition = (Transition) objectMap;
+                if (transition.getPoint().getX() <= roomPoint.getX() && (transition.getType() == TransitionType.Lift || transition.getType() == TransitionType.Stairs)) {
+                    double currentDist = getDist(roomPoint, transition.getPoint());
+                    if (minDist > currentDist) {
+                        minDist = currentDist;
+                        minPoint = transition.getPoint();
+                    }
+                }
+            }
+        }
+        return minPoint;
+    }
+
+    private Point findClosestRightStairOrLift(ObjectMap room, long number) {
+        Floor floor = findByNumber(number);
+        double minDist = Double.MAX_VALUE;
+        Point roomPoint = room.getPoint();
+        Point minPoint = new Point();
+        for (ObjectMap objectMap : floor.getObjectMaps()) {
+            if (objectMap instanceof Transition) {
+                Transition transition = (Transition) objectMap;
+                if (transition.getPoint().getX() > roomPoint.getX() && (transition.getType() == TransitionType.Lift || transition.getType() == TransitionType.Stairs)) {
+                    double currentDist = getDist(roomPoint, transition.getPoint());
+                    if (minDist > currentDist) {
+                        minDist = currentDist;
+                        minPoint = transition.getPoint();
+                    }
+                }
+            }
+        }
+        return minPoint;
+    }
+
+    private double getDist(Point first, Point second) {
+        return Math.sqrt(Math.pow(first.getX() - second.getX(), 2) + Math.pow(first.getY() - second.getY(), 2));
+    }
+
     @GetMapping("floor/directions")
-    public List<Point> getDirections(double firstX, double firstY, double secondX, double secondY, long number1, long number2) {
+    public ClosestWay getDirections(@RequestParam("firstX") double firstX, @RequestParam("firstY") double firstY,
+                                    @RequestParam("secondX") double secondX, @RequestParam("secondY") double secondY,
+                                    @RequestParam("number1") long number1, @RequestParam("number2") long number2) {
         ObjectMap firstRoom = getRoom(firstX, firstY, number1);
         ObjectMap secondRoom = getRoom(secondX, secondY, number2);
-        Floor firstFloor = findByNumber(number1);
-        List<ObjectMap> objectMaps = firstFloor.getObjectMaps();
-        Collections.sort(objectMaps);
-        List<Point> answer = new ArrayList<>();
-        int n = objectMaps.size();
-        double[] d = new double[n];
-        for (int i = 0; i < n; ++i) {
-            d[i] = Double.MAX_VALUE;
-        }
-        int[] p = new int[n];
-        boolean[] used = new boolean[n];
-        d[(int) firstRoom.getId()] = 0;
-        for (ObjectMap objectMap1 : objectMaps) {
-            int v = -1;
-            for (int j = 0; j < n; ++j) {
-                if (!used[j] && (v == -1 || d[j] < d[v])) {
-                    v = j;
+        if (number1 == number2) {
+            Floor firstFloor = findByNumber(number1);
+            List<ObjectMap> objectMaps = firstFloor.getObjectMaps();
+            Collections.sort(objectMaps);
+            List<Point> points = new ArrayList<>();
+            int n = objectMaps.size();
+            double[] d = new double[n];
+            for (int i = 0; i < n; ++i) {
+                d[i] = Double.MAX_VALUE;
+            }
+            int[] p = new int[n];
+            boolean[] used = new boolean[n];
+            d[(int) firstRoom.getId()] = 0;
+            double distance = 0;
+            for (ObjectMap objectMap1 : objectMaps) {
+                int v = -1;
+                for (int j = 0; j < n; ++j) {
+                    if (!used[j] && (v == -1 || d[j] < d[v])) {
+                        v = j;
+                    }
+                }
+                if (d[v] == Double.MAX_VALUE) {
+                    break;
+                }
+                used[v] = true;
+                for (ObjectMap objectMap : objectMap1.getNeighbors()) {
+                    int to = (int) objectMap.getId();
+                    double len = getDist(objectMap1.getPoint(), objectMap.getPoint());
+                    if (d[(int) objectMap1.getId()] + len < d[to]) {
+                        d[to] = d[(int) objectMap1.getId()] + len;
+                        p[to] = (int) objectMap1.getId();
+                    }
                 }
             }
-            if (d[v] == Double.MAX_VALUE) {
-                break;
+            while (p[(int) secondRoom.getId()] != 0) {
+                ObjectMap parentRoom = objectMapController.findById(secondRoom.getId());
+                distance += getDist(secondRoom.getPoint(), parentRoom.getPoint());
+                points.add(secondRoom.getPoint());
+                secondRoom = parentRoom;
             }
-            used[v] = true;
-            for (ObjectMap objectMap : objectMap1.getNeighbors()) {
-                int to = (int) objectMap.getId();
-                double len = Math.sqrt(Math.pow(objectMap1.getPoint().getX() - objectMap.getPoint().getX(), 2) + Math.pow(objectMap1.getPoint().getY() - objectMap.getPoint().getY(), 2));
-                if (d[(int) objectMap1.getId()] + len < d[to]) {
-                    d[to] = d[(int) objectMap1.getId()] + len;
-                    p[to] = (int) objectMap1.getId();
-                }
+            points.add(firstRoom.getPoint());
+            Collections.reverse(points);
+            ClosestWay closestWay = new ClosestWay();
+            closestWay.setDistance(distance);
+            closestWay.setPoints(points);
+            return closestWay;
+        } else {
+            Point leftClosest = findClosestLeftStairOrLift(firstRoom, number1);
+            Point rightClosest = findClosestRightStairOrLift(firstRoom, number2);
+            double dist1 = getDist(firstRoom.getPoint(), leftClosest) + getDist(leftClosest, secondRoom.getPoint());
+            double dist2 = getDist(firstRoom.getPoint(), rightClosest) + getDist(rightClosest, secondRoom.getPoint());
+            if (dist1 <= dist2) {
+                return getAns(leftClosest, firstX, firstY, secondX, secondY, number1, number2);
+            } else {
+                return getAns(rightClosest, firstX, firstY, secondX, secondY, number1, number2);
             }
         }
-        while (p[(int) secondRoom.getId()] != 0) {
-            answer.add(secondRoom.getPoint());
-            secondRoom = objectMapController.findById(secondRoom.getId());
-        }
-        answer.add(firstRoom.getPoint());
-        Collections.reverse(answer);
-        return answer;
+    }
+
+    private ClosestWay getAns(Point point, double firstX, double firstY, double secondX, double secondY, long number1,
+                              long number2) {
+        ClosestWay ans = new ClosestWay();
+        ClosestWay first = getDirections(firstX, firstY, point.getX(), point.getY(), number1, number1);
+        ClosestWay second = getDirections(point.getX(), point.getY(), secondX, secondY, number2, number2);
+        List<Point> ansPoint = first.getPoints();
+        ansPoint.addAll(second.getPoints());
+        double ansDistance = first.getDistance() + second.getDistance();
+        ans.setPoints(ansPoint);
+        ans.setDistance(ansDistance);
+        return ans;
     }
 
     private boolean isCorrect(double x, double y, Point point, double roomW, double roomH) {
