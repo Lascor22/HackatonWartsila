@@ -28,6 +28,8 @@ public class Event {
     @NotNull
     private String name;
 
+    private String Description;
+
     public ObjectMap getObjectMap() {
         return objectMap;
     }
@@ -77,5 +79,13 @@ public class Event {
 
     public void setCreator(Employee creator) {
         this.creator = creator;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
     }
 }
