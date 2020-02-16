@@ -32,12 +32,12 @@ public class PublicRoomForm {
         this.height = height;
     }
 
-    public double getWidht() {
-        return widht;
+    public double getWidth() {
+        return width;
     }
 
-    public void setWidht(double widht) {
-        this.widht = widht;
+    public void setWidth(double width) {
+        this.width = width;
     }
 
     public List<ObjectMap> getNeighbors() {
@@ -67,7 +67,7 @@ public class PublicRoomForm {
     private long floorNumber;
     private PublicRoomType type;
     private double height;
-    private double widht;
+    private double width;
     private List<ObjectMap> neighbors;
     private Point point;
     private List<Door> doors;

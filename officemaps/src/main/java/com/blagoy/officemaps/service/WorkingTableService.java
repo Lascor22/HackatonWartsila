@@ -11,9 +11,11 @@ import java.util.List;
 @Service
 public class WorkingTableService {
     private final WorkingTableRepository workingTableRepository;
+    private final WorkRoomService workRoomService;
 
-    public WorkingTableService(WorkingTableRepository workingTableRepository) {
+    public WorkingTableService(WorkingTableRepository workingTableRepository, WorkRoomService workRoomService) {
         this.workingTableRepository = workingTableRepository;
+        this.workRoomService = workRoomService;
     }
 
     public List<WorkingTable> findAll() {
@@ -31,8 +33,6 @@ public class WorkingTableService {
     public void createWorkingTable(WorkingTableForm workingTableForm) {
         WorkingTable workingTable = new WorkingTable();
         workingTable.setNumber(workingTableForm.getNumber());
-        workingTable.setWorkRoom(workingTableForm.getWorkRoom());
-        workingTable.setEmployee(workingTableForm.getEmployee());
         workingTableRepository.save(workingTable);
     }
 }

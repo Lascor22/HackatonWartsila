@@ -35,7 +35,7 @@ public class PublicRoomController {
 
     @PostMapping("publicRoom")
     public void createRoom(@RequestBody PublicRoomForm publicRoomForm) {
-        publicRoomService.createRoom(floorService.findByNumber(publicRoomForm.getFloorNumber()), publicRoomForm);
+        publicRoomService.createRoom(publicRoomForm);
     }
 
 }

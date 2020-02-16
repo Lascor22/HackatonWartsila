@@ -46,11 +46,11 @@ public class WorkRoomService {
         return findByNumber(number).getEmployees();
     }
 
-    public void createWorkRoom(WorkRoomForm workRoomForm, Floor floor) {
+    public void createWorkRoom(WorkRoomForm workRoomForm) {
         WorkRoom workRoom = new WorkRoom();
         workRoom.setNumber(workRoomForm.getNumber());
         workRoom.setPoint(workRoomForm.getPoint());
-        workRoom.setFloor(floor);
+        workRoom.setFloorNumber(workRoomForm.getFloorNumber());
         workRoom.setWidth(workRoomForm.getWidth());
         workRoom.setHeight(workRoomForm.getHeight());
         workRoom.setDoors(workRoomForm.getDoors());
@@ -59,6 +59,10 @@ public class WorkRoomService {
         for (Door door : workRoom.getDoors()) {
             doorService.save(door);
         }
+        workRoomRepository.save(workRoom);
+    }
+
+    public void save(WorkRoom workRoom) {
         workRoomRepository.save(workRoom);
     }
 }

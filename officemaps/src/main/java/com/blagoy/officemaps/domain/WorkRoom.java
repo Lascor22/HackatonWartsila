@@ -25,14 +25,12 @@ public class WorkRoom extends ObjectMap {
     @CreationTimestamp
     private Date creationTime;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
-    private Floor floor;
+    private long floorNumber;
 
     @OneToMany(mappedBy = "workRoom", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Employee> employees;
 
-    @OneToMany(mappedBy = "workRoom", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     private List<WorkingTable> workingTables;
 
     public List<Employee> getEmployees() {
@@ -59,11 +57,11 @@ public class WorkRoom extends ObjectMap {
         this.creationTime = creationTime;
     }
 
-    public Floor getFloor() {
-        return floor;
+    public long getFloorNumber() {
+        return floorNumber;
     }
 
-    public void setFloor(Floor floor) {
-        this.floor = floor;
+    public void setFloorNumber(long floorNumber) {
+        this.floorNumber = floorNumber;
     }
 }

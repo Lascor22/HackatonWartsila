@@ -5,6 +5,7 @@ import com.blagoy.officemaps.form.PublicRoomForm;
 import com.blagoy.officemaps.repository.PublicRoomRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -27,12 +28,13 @@ public class PublicRoomService {
         return publicRoomRepository.findById(id).orElse(null);
     }
 
-    public void createRoom(Floor floor, PublicRoomForm publicRoomForm) {
+    @Transactional
+    public void createRoom(PublicRoomForm publicRoomForm) {
         PublicRoom publicRoom = new PublicRoom();
         publicRoom.setPoint(publicRoomForm.getPoint());
         publicRoom.setHeight(publicRoomForm.getHeight());
-        publicRoom.setWidth(publicRoomForm.getWidht());
-        publicRoom.setFloor(floor);
+        publicRoom.setWidth(publicRoomForm.getWidth());
+        publicRoom.setFloor(publicRoomForm.getFloorNumber());
         publicRoom.setType(publicRoomForm.getType());
         publicRoom.setDoors(publicRoomForm.getDoors());
         publicRoom.setNeighbors(publicRoomForm.getNeighbors());

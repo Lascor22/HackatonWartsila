@@ -14,13 +14,9 @@ public class Floor {
     @Id
     private long id;
 
-    @NotEmpty
-    @NotNull
     @JoinColumn(name = "number", nullable = false)
     private long number;
 
-    @NotNull
-    @NotEmpty
     @OneToMany(fetch = FetchType.LAZY)
     private List<ObjectMap> objectMaps;
 

@@ -10,9 +10,11 @@ import java.util.List;
 @Service
 public class TransitionService {
     private final TransitionRepository transitionRepository;
+    private final DoorService doorService;
 
-    public TransitionService(TransitionRepository transitionRepository) {
+    public TransitionService(TransitionRepository transitionRepository, DoorService doorService) {
         this.transitionRepository = transitionRepository;
+        this.doorService = doorService;
     }
 
     public List<Transition> findAll() {
@@ -23,15 +25,18 @@ public class TransitionService {
         return transitionRepository.findById(id).orElse(null);
     }
 
-    public void createTransition(TransitionForm transitionForm, Floor floor) {
+    public void createTransition(TransitionForm transitionForm) {
         Transition transition = new Transition();
         transition.setType(transitionForm.getType());
-        transition.setFloor(floor);
+        transition.setFloorNumber(transitionForm.getFloorNumber());
         transition.setHeight(transitionForm.getHeight());
         transition.setWidth(transitionForm.getWidth());
         transition.setPoint(transitionForm.getPoint());
         transition.setDoors(transitionForm.getDoors());
         transition.setNeighbors(transitionForm.getNeighbors());
+        for (Door door : transition.getDoors()) {
+            doorService.save(door);
+        }
         transitionRepository.save(transition);
     }
 }

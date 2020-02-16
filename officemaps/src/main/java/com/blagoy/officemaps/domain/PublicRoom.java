@@ -11,10 +11,7 @@ import java.util.Date;
 @Table(name = "public_room")
 public class PublicRoom extends ObjectMap {
 
-    @NotEmpty
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Floor floor;
+    private long floorNumber;
 
     @JoinColumn(name = "type", nullable = false)
     private PublicRoomType type;
@@ -31,12 +28,12 @@ public class PublicRoom extends ObjectMap {
         this.type = type;
     }
 
-    public Floor getFloor() {
-        return floor;
+    public long getFloor() {
+        return floorNumber;
     }
 
-    public void setFloor(Floor floor) {
-        this.floor = floor;
+    public void setFloor(long floorNumber) {
+        this.floorNumber = floorNumber;
     }
 
     public Date getCreationTime() {

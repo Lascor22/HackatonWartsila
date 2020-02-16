@@ -37,6 +37,6 @@ public class WorkRoomController {
 
     @PostMapping("workroom")
     public void createWorkingRoom(@RequestBody WorkRoomForm workRoomForm) {
-        workRoomService.createWorkRoom(workRoomForm, floorService.findByNumber(workRoomForm.getFloorNumber()));
+        workRoomService.createWorkRoom(workRoomForm);
     }
 }

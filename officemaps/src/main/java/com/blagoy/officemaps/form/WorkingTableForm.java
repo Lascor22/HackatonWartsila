@@ -14,22 +14,4 @@ public class WorkingTableForm {
         this.number = number;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
-    public WorkRoom getWorkRoom() {
-        return workRoom;
-    }
-
-    public void setWorkRoom(WorkRoom workRoom) {
-        this.workRoom = workRoom;
-    }
-
-    private Employee employee;
-    private WorkRoom workRoom;
 }

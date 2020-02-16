@@ -34,6 +34,6 @@ public class TransitionController {
 
     @PostMapping("transition")
     public void createTransition(@RequestBody TransitionForm transitionForm) {
-        transitionService.createTransition(transitionForm, floorService.findByNumber(transitionForm.getFloorNumber()));
+        transitionService.createTransition(transitionForm);
     }
 }

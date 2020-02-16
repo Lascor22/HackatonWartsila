@@ -30,11 +30,6 @@ public class WorkingTableController {
         return workingTableService.findById(id);
     }
 
-    @GetMapping("workingTable/{number}/employee")
-    public Employee getEmployeeByWorkingTableNumber(@PathVariable("number") long number) {
-        return workingTableService.findByNumber(number).getEmployee();
-    }
-
     @PostMapping("workingTable")
     public void createWorkingTable(@RequestBody WorkingTableForm workingTableForm) {
         workingTableService.createWorkingTable(workingTableForm);
