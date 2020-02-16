@@ -25,11 +25,11 @@ export class ThirdFloorComponent implements OnInit {
     this.popupConfig.height = '660px';
     this.popupConfig.width = '900px';
     this.popupConfig.maxHeight = '660px';
+    this.popupConfig.id = 'thirdfloor';
   }
 
   ngOnInit(): void {
     console.log('third floor onInit');
-    // if (this.location.path().endsWith('123')) {
     if (this.location.path().match(new RegExp('office/floor/3/room/*'))) {
       console.log('if');
       this.configurePopupWindow();

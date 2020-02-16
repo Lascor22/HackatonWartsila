@@ -10,7 +10,10 @@ export class TopMenuComponent implements OnInit {
   public isFirstFloor: boolean;
 
   constructor(private location: Location) {
-    this.isFirstFloor = this.location.path().includes('/floor/1');
+    if (this.location.path() === '') {
+      this.location.go('/office/floor/1');
+    }
+    this.isFirstFloor = this.location.path().includes('/floor/1') || this.location.path() === '';
   }
 
   toggleIsFirstFloor() {

@@ -12,7 +12,8 @@ const officeRoutes: Routes = [
   { path: 'office/floor/3', component: ThirdFloorComponent},
   { path: 'office/floor/1/room/:room', component: FirstFloorComponent},
   { path: 'office/floor/3/room/:room', component: ThirdFloorComponent},
-  { path: 'office/floor/3/room/:room/antresol', component: ThirdFloorComponent}
+  { path: 'office/floor/3/room/:room/antresol', component: ThirdFloorComponent},
+  { path: '', component: FirstFloorComponent }
 ];
 
 @NgModule({

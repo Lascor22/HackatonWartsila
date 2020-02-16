@@ -28,6 +28,7 @@ export class FirstFloorComponent implements OnInit {
     this.popupConfig.height = '660px';
     this.popupConfig.width = '900px';
     this.popupConfig.maxHeight = '660px';
+    this.popupConfig.id = 'firstfloor';
   }
 
   ngOnInit(): void {

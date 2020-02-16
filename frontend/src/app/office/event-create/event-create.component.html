@@ -1,0 +1,29 @@
+<div class="event-create-wrapper">
+  <h1>Create Event</h1>
+  <form class="event-create-form" [formGroup]="eventForm">
+    <!--<mat-form-field class="event-name" [formControl]="eventForm.get('name')">-->
+    <!--<mat-form-field class="event-name" >-->
+    <mat-form-field class="event-name">
+      <mat-label>Event name</mat-label>
+      <input matInput placeholder="" value="" formControlName="name" />
+    </mat-form-field>
+
+    <!--<mat-form-field class="event-creator" >-->
+    <!--<mat-form-field class="event-creator" [formControl]="eventForm.get('creator')" ]>-->
+    <mat-form-field class="event-creator">
+      <mat-label>Event creator</mat-label>
+      <input matInput placeholder="" value="" formControlName="creator"/>
+    </mat-form-field>
+
+    <mat-form-field class="event-name" >
+    <!--<mat-form-field class="event-name" [formControl]="eventForm.get('description)">-->
+    <!--<mat-form-field class="event-name">-->
+      <mat-label>Short description</mat-label>
+      <textarea matInput placeholder="" value="" formControlName="description" maxlength="60" ></textarea>
+    </mat-form-field>
+  </form>
+
+  <div class="container-bottom">
+    <button (click)="createEvent()">Create</button>
+  </div>
+</div>

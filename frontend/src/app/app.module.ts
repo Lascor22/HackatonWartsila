@@ -17,6 +17,10 @@ import {RouterModule} from '@angular/router';
 import { TopMenuComponent } from './office/top-menu/top-menu.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIcon, MatIconModule} from '@angular/material/icon';
+import { SearchComponent } from './office/search/search.component';
+import { EventCreateComponent } from './office/event-create/event-create.component';
+import {MatInputModule} from '@angular/material/input';
+import {Form, FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,8 @@ import {MatIcon, MatIconModule} from '@angular/material/icon';
     WorkingRoomComponent,
     WorkingRoomAntresolComponent,
     TopMenuComponent,
+    SearchComponent,
+    EventCreateComponent,
   ],
   imports: [
     HttpClientModule,
@@ -38,7 +44,10 @@ import {MatIcon, MatIconModule} from '@angular/material/icon';
     MatDialogModule,
     OfficeRoutingModule,
     RouterModule,
-    MatIconModule
+    MatIconModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   entryComponents: [],
   providers: [],
