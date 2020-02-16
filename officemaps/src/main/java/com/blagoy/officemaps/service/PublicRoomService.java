@@ -1,6 +1,7 @@
 package com.blagoy.officemaps.service;
 
-import com.blagoy.officemaps.domain.*;
+import com.blagoy.officemaps.domain.Door;
+import com.blagoy.officemaps.domain.PublicRoom;
 import com.blagoy.officemaps.form.PublicRoomForm;
 import com.blagoy.officemaps.repository.ObjectMapRepository;
 import com.blagoy.officemaps.repository.PublicRoomRepository;
