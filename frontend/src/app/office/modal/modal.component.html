@@ -3,7 +3,7 @@
     <button mat-raised-button id="modal-cancel-button" (click)="closeModal()">Go back</button>
   </div>
   <div class="header">
-    <h1>Room 228 </h1>
+    <h1>Room {{roomNumber}} </h1>
   </div>
   <!--</footer>-->
   <!--<button (click)="closeModal()" value="X"></button>-->
@@ -16,7 +16,7 @@
     <div class="employeesOrEvents">
       <!--<p *ngFor="let emp of employees">{{emp}}</p>-->
       <div *ngIf="isEmployeesSelected" class="employees">
-        <button mat-raised-button *ngFor="let emp of employees">{{emp}}</button>
+        <button mat-raised-button *ngFor="let emp of employees">{{emp.name}}</button>
       </div>
 
       <div *ngIf="!isEmployeesSelected" class="events">

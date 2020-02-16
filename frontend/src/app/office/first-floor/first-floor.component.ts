@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from '../service/data.service';
-import {WorkingRoomDTO} from '../dto/DTOs';
+import {EmployeeDTO, WorkingRoomDTO} from '../dto/DTOs';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {WorkingRoomComponent} from '../working-room/working-room.component';
-import { Location } from '@angular/common'
+import { Location } from '@angular/common';
 import {WorkingRoomAntresolComponent} from '../working-room-antresol/working-room-antresol.component';
 import {ModalComponent} from '../modal/modal.component';
 
@@ -39,19 +39,23 @@ export class FirstFloorComponent implements OnInit {
     }
   }
 
-  openModal() {
-    this.location.go(this.location.path() + '/room/123');
+  openModalWithData(data, roomNumber) {
+    this.location.go(this.location.path() + '/room/' + roomNumber);
     this.configurePopupWindow();
+    this.popupConfig.data = data;
     const modalDialog = this.matDialog.open(ModalComponent, this.popupConfig);
   }
 
   onWorkingRoomClick(event: MouseEvent) {
     const roomNumber: number = +(event.target as Element).innerHTML;
+    let responseData: EmployeeDTO[];
     console.log(roomNumber);
-    this.dataService.getWorkingRoom(roomNumber).subscribe(response => {
+    this.dataService.getEmployeesFromWorkingRoom(roomNumber).subscribe(response => {
+      console.log('response:');
       console.log(response);
+      responseData = response;
+      this.openModalWithData(responseData, roomNumber);
     });
-    this.openModal();
   }
 
 }
