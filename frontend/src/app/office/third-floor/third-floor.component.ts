@@ -3,6 +3,7 @@ import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {DataService} from '../service/data.service';
 import {Location} from '@angular/common';
 import {ModalComponent} from '../modal/modal.component';
+import {EmployeeDTO} from '../dto/DTOs';
 
 @Component({
   selector: 'app-third-floor',
@@ -37,18 +38,29 @@ export class ThirdFloorComponent implements OnInit {
     }
   }
 
-  openModal() {
-    this.location.go(this.location.path() + '/room/123');
+  openModalWithData(data, roomNumber) {
+    this.location.go(this.location.path() + '/room/' + roomNumber);
     this.configurePopupWindow();
+    this.popupConfig.data = data;
     const modalDialog = this.matDialog.open(ModalComponent, this.popupConfig);
   }
 
+  // openModal() {
+  //   this.location.go(this.location.path() + '/room/123');
+  //   this.configurePopupWindow();
+  //   const modalDialog = this.matDialog.open(ModalComponent, this.popupConfig);
+  // }
+
   onWorkingRoomClick(event: MouseEvent) {
-    // const roomNumber: number = +(event.target as Element).innerHTML;
-    // this.dataService.getWorkingRoom(roomNumber).subscribe(response => {
-    //   console.log(response);
-    // });
-    this.openModal();
+    const roomNumber: number = +(event.target as Element).innerHTML;
+    let responseData: EmployeeDTO[];
+    console.log(roomNumber);
+    this.dataService.getEmployeesFromWorkingRoom(roomNumber).subscribe(response => {
+      console.log('response:');
+      console.log(response);
+      responseData = response;
+      this.openModalWithData(responseData, roomNumber);
+    });
   }
 
 }
