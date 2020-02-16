@@ -3,6 +3,7 @@ package com.blagoy.officemaps.controller;
 import com.blagoy.officemaps.domain.Employee;
 import com.blagoy.officemaps.domain.Event;
 import com.blagoy.officemaps.domain.ObjectMap;
+import com.blagoy.officemaps.form.EventForm;
 import com.blagoy.officemaps.service.EventService;
 import com.blagoy.officemaps.service.ObjectMapService;
 import org.springframework.web.bind.annotation.*;
@@ -26,10 +27,9 @@ public class EventController {
     }
 
     @PostMapping("event")
-    public void createEvent(long roomId, String name, List<Employee> employees, Employee creator) {
-        ObjectMap room = objectMapService.findById(roomId);
-        eventService.createEvent(name, room, employees, creator);
-        //TODO
+    public void createEvent(@RequestBody EventForm eventForm) {
+        ObjectMap room = objectMapService.findById(eventForm.getRoomId());
+        eventService.createEvent(eventForm, room);
     }
 
     @GetMapping("event/{id}")
