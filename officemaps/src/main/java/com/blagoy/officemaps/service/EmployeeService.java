@@ -3,6 +3,7 @@ package com.blagoy.officemaps.service;
 import com.blagoy.officemaps.domain.Employee;
 import com.blagoy.officemaps.domain.WorkRoom;
 import com.blagoy.officemaps.domain.WorkingTable;
+import com.blagoy.officemaps.form.EmployeeForm;
 import com.blagoy.officemaps.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +13,11 @@ import java.util.Optional;
 @Service
 public class EmployeeService {
     private final EmployeeRepository employeeRepository;
+    private final WorkingTableService workingTableService;
 
-    public EmployeeService(EmployeeRepository employeeRepository) {
+    public EmployeeService(EmployeeRepository employeeRepository, WorkingTableService workingTableService) {
         this.employeeRepository = employeeRepository;
+        this.workingTableService = workingTableService;
     }
 
     public List<Employee> findAll() {
@@ -36,5 +39,13 @@ public class EmployeeService {
 
     public Employee findByName(String name) {
         return employeeRepository.findByName(name);
+    }
+
+    public void save(EmployeeForm employeeForm) {
+        Employee employee = new Employee();
+        employee.setName(employeeForm.getName());
+        employee.setWorkingTable(workingTableService.findByNumber(employeeForm.getWorkingTableNumber()));
+        employee.setWorkRoom(null);
+        employeeRepository.save(employee);
     }
 }
