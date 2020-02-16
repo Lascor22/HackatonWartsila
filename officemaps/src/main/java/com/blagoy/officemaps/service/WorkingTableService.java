@@ -1,6 +1,5 @@
 package com.blagoy.officemaps.service;
 
-import com.blagoy.officemaps.domain.WorkRoom;
 import com.blagoy.officemaps.domain.WorkingTable;
 import com.blagoy.officemaps.form.WorkingTableForm;
 import com.blagoy.officemaps.repository.WorkingTableRepository;
