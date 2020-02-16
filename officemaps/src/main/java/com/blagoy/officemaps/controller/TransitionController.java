@@ -4,6 +4,7 @@ import com.blagoy.officemaps.domain.Door;
 import com.blagoy.officemaps.domain.ObjectMap;
 import com.blagoy.officemaps.domain.Transition;
 import com.blagoy.officemaps.domain.TransitionType;
+import com.blagoy.officemaps.form.TransitionForm;
 import com.blagoy.officemaps.service.FloorService;
 import com.blagoy.officemaps.service.TransitionService;
 import org.springframework.web.bind.annotation.*;
@@ -32,17 +33,7 @@ public class TransitionController {
     }
 
     @PostMapping("transition")
-    public void createTransition(long floorNumber, String type, double x, double y, double height, double width,
-                                 List<Door> doors, List<ObjectMap> neighbors) {
-        TransitionType transitionType;
-        if ("Lift".equals(type)) {
-            transitionType = TransitionType.Lift;
-        } else if ("Stairs".equals(type)) {
-            transitionType = TransitionType.Stairs;
-        } else {
-            transitionType = TransitionType.Corridor;
-        }
-        transitionService.createTransition(floorService.findByNumber(floorNumber), transitionType, x, y, height, width,
-                doors, neighbors);
+    public void createTransition(@RequestBody TransitionForm transitionForm) {
+        transitionService.createTransition(transitionForm, floorService.findByNumber(transitionForm.getFloorNumber()));
     }
 }

@@ -15,7 +15,7 @@ public class Event {
     @GeneratedValue
     private long id;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Employee> employeeList;
 
     @ManyToOne(fetch = FetchType.LAZY)

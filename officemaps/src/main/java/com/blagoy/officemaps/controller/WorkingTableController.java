@@ -2,6 +2,7 @@ package com.blagoy.officemaps.controller;
 
 import com.blagoy.officemaps.domain.Employee;
 import com.blagoy.officemaps.domain.WorkingTable;
+import com.blagoy.officemaps.form.WorkingTableForm;
 import com.blagoy.officemaps.service.WorkRoomService;
 import com.blagoy.officemaps.service.WorkingTableService;
 import org.springframework.web.bind.annotation.*;
@@ -35,8 +36,8 @@ public class WorkingTableController {
     }
 
     @PostMapping("workingTable")
-    public void createWorkingTable(long number, long roomNumber) {
-        workingTableService.createWorkingTable(number, workRoomService.findByNumber(roomNumber));
+    public void createWorkingTable(@RequestBody WorkingTableForm workingTableForm) {
+        workingTableService.createWorkingTable(workingTableForm);
     }
 
 }

@@ -1,10 +1,10 @@
 package com.blagoy.officemaps.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
+@Table
 public class ObjectMap implements Comparable<ObjectMap> {
     @Id
     @GeneratedValue

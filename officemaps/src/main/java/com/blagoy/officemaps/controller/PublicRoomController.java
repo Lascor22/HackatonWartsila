@@ -5,6 +5,7 @@ import com.blagoy.officemaps.domain.Door;
 import com.blagoy.officemaps.domain.ObjectMap;
 import com.blagoy.officemaps.domain.PublicRoom;
 import com.blagoy.officemaps.domain.PublicRoomType;
+import com.blagoy.officemaps.form.PublicRoomForm;
 import com.blagoy.officemaps.service.FloorService;
 import com.blagoy.officemaps.service.PublicRoomService;
 import org.springframework.web.bind.annotation.*;
@@ -33,18 +34,8 @@ public class PublicRoomController {
     }
 
     @PostMapping("publicRoom")
-    public void createRoom(long floorNumber, String type, double x, double y, double height, double width,
-                           List<Door> doors, List<ObjectMap> neighbors) {
-        PublicRoomType publicRoomType;
-        if ("Toilet".equals(type)) {
-            publicRoomType = PublicRoomType.Toilet;
-        } else {
-            publicRoomType = PublicRoomType.CoffeePoint;
-        }
-
-
-        publicRoomService.createRoom(floorService.findByNumber(floorNumber), publicRoomType, x, y, height, width,
-                doors, neighbors);
+    public void createRoom(@RequestBody PublicRoomForm publicRoomForm) {
+        publicRoomService.createRoom(floorService.findByNumber(publicRoomForm.getFloorNumber()), publicRoomForm);
     }
 
 }
