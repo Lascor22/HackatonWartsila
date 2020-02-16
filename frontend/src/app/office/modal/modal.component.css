@@ -1,0 +1,55 @@
+.modal-content-wrapper {
+  padding: 0;
+  /*padding-right: 20px;*/
+  display: flex;
+  flex-direction: column;
+}
+
+.top-container {
+  display: flex;
+  flex-direction: row-reverse;
+  height: 30px;
+}
+
+.header h1 {
+  text-align: center;
+  align-items: center;
+  margin-top: 0;
+}
+
+.employees {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+.employees button {
+  width: 150px;
+  margin-bottom: 7px;
+  /*margin-right: 20px*/
+}
+
+.middle-container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.middle-working-room {
+  width: 600px;
+}
+
+.employees {
+  width: 200px;
+}
+
+.bottom-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.bottom-container button {
+  width: 100px;
+  margin-left: 165px;
+}

@@ -45,4 +45,5 @@ mat-dialog-container#modal-component {
 }
 
 #modal-cancel-button {
+  /*background: red;*/
 }
