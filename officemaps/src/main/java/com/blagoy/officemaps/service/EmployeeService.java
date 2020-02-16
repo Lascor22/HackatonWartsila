@@ -14,10 +14,12 @@ import java.util.Optional;
 public class EmployeeService {
     private final EmployeeRepository employeeRepository;
     private final WorkingTableService workingTableService;
+    private final WorkRoomService workRoomService;
 
-    public EmployeeService(EmployeeRepository employeeRepository, WorkingTableService workingTableService) {
+    public EmployeeService(EmployeeRepository employeeRepository, WorkingTableService workingTableService, WorkRoomService workRoomService) {
         this.employeeRepository = employeeRepository;
         this.workingTableService = workingTableService;
+        this.workRoomService = workRoomService;
     }
 
     public List<Employee> findAll() {
@@ -45,7 +47,7 @@ public class EmployeeService {
         Employee employee = new Employee();
         employee.setName(employeeForm.getName());
         employee.setWorkingTable(workingTableService.findByNumber(employeeForm.getWorkingTableNumber()));
-        employee.setWorkRoom(null);
+        employee.setWorkRoom(workRoomService.findByNumber(employeeForm.getRoomNumber()));
         employeeRepository.save(employee);
     }
 }
