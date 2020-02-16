@@ -51,6 +51,6 @@ public class WorkRoomController extends ObjectMapController {
     @GetMapping("workroom/number/{number}/events")
     public List<Event> findEventsInWorkRoom(@PathVariable("number") long number) {
         WorkRoom workRoom = findByNumber(number);
-        return workRoom.getEvents() == null? new ArrayList<>() : workRoom.getEvents();
+        return workRoom == null? new ArrayList<>() : workRoom.getEvents();
     }
 }
