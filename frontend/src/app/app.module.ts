@@ -13,6 +13,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ThirdFloorComponent } from './office/third-floor/third-floor.component';
 import { WorkingRoomComponent } from './office/working-room/working-room.component';
 import { WorkingRoomAntresolComponent } from './office/working-room-antresol/working-room-antresol.component';
+import {OfficeRoutingModule} from './office/office-routing.module';
+import {RouterModule} from '@angular/router';
+import { TopMenuComponent } from './office/top-menu/top-menu.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,7 @@ import { WorkingRoomAntresolComponent } from './office/working-room-antresol/wor
     ThirdFloorComponent,
     WorkingRoomComponent,
     WorkingRoomAntresolComponent,
+    TopMenuComponent,
   ],
   imports: [
     HttpClientModule,
@@ -30,7 +34,9 @@ import { WorkingRoomAntresolComponent } from './office/working-room-antresol/wor
     NgbModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    OfficeRoutingModule,
+    RouterModule
   ],
   entryComponents: [],
   providers: [],
