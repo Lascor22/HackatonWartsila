@@ -1,5 +1,7 @@
 package com.blagoy.officemaps.controller;
 
+import com.blagoy.officemaps.domain.Door;
+import com.blagoy.officemaps.domain.ObjectMap;
 import com.blagoy.officemaps.domain.Transition;
 import com.blagoy.officemaps.domain.TransitionType;
 import com.blagoy.officemaps.service.FloorService;
@@ -30,7 +32,8 @@ public class TransitionController {
     }
 
     @PostMapping("transition")
-    public void createTransition(long floorNumber, String type, double x, double y, double height, double width) {
+    public void createTransition(long floorNumber, String type, double x, double y, double height, double width,
+                                 List<Door> doors, List<ObjectMap> neighbors) {
         TransitionType transitionType;
         if ("Lift".equals(type)) {
             transitionType = TransitionType.Lift;
@@ -39,6 +42,7 @@ public class TransitionController {
         } else {
             transitionType = TransitionType.Corridor;
         }
-        transitionService.createTransition(floorService.findByNumber(floorNumber), transitionType, x, y, height, width);
+        transitionService.createTransition(floorService.findByNumber(floorNumber), transitionType, x, y, height, width,
+                doors, neighbors);
     }
 }

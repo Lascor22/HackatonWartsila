@@ -1,6 +1,8 @@
 package com.blagoy.officemaps.controller;
 
 
+import com.blagoy.officemaps.domain.Door;
+import com.blagoy.officemaps.domain.ObjectMap;
 import com.blagoy.officemaps.domain.WorkRoom;
 import com.blagoy.officemaps.service.FloorService;
 import com.blagoy.officemaps.service.WorkRoomService;
@@ -35,7 +37,9 @@ public class WorkRoomController {
     }
 
     @PostMapping("workingroom")
-    public void createWorkingRoom(long number, long floorNumber, double x, double y, double height, double width) {
-        workRoomService.createWorkRoom(number, floorService.findByNumber(number), x, y, height, width);
+    public void createWorkingRoom(long number, long floorNumber, double x, double y, double height, double width,
+                                  List<Door> doors, List<ObjectMap> neighbors) {
+        workRoomService.createWorkRoom(number, floorService.findByNumber(floorNumber), x, y, height, width, doors,
+                neighbors);
     }
 }

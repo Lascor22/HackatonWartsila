@@ -1,6 +1,8 @@
 package com.blagoy.officemaps.controller;
 
 
+import com.blagoy.officemaps.domain.Door;
+import com.blagoy.officemaps.domain.ObjectMap;
 import com.blagoy.officemaps.domain.PublicRoom;
 import com.blagoy.officemaps.domain.PublicRoomType;
 import com.blagoy.officemaps.service.FloorService;
@@ -31,7 +33,8 @@ public class PublicRoomController {
     }
 
     @PostMapping("publicRoom")
-    public void createRoom(long floorNumber, String type, double x, double y, double height, double width) {
+    public void createRoom(long floorNumber, String type, double x, double y, double height, double width,
+                           List<Door> doors, List<ObjectMap> neighbors) {
         PublicRoomType publicRoomType;
         if ("Toilet".equals(type)) {
             publicRoomType = PublicRoomType.Toilet;
@@ -40,7 +43,8 @@ public class PublicRoomController {
         }
 
 
-        publicRoomService.createRoom(floorService.findByNumber(floorNumber), publicRoomType, x, y, height, width);
+        publicRoomService.createRoom(floorService.findByNumber(floorNumber), publicRoomType, x, y, height, width,
+                doors, neighbors);
     }
 
 }

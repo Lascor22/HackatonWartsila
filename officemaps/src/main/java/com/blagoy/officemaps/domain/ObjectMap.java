@@ -11,7 +11,6 @@ public class ObjectMap implements Comparable<ObjectMap> {
     private long id;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @NotNull
     private List<ObjectMap> neighbors;
 
     @OneToMany

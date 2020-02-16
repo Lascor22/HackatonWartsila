@@ -41,7 +41,8 @@ public class WorkRoomService {
         return findByNumber(number).getEmployees();
     }
 
-    public void createWorkRoom(long number, Floor floor, double x, double y, double height, double width) {
+    public void createWorkRoom(long number, Floor floor, double x, double y, double height, double width,
+                               List<Door> doors, List<ObjectMap> neighbors) {
         WorkRoom workRoom = new WorkRoom();
         Point point = new Point();
         point.setX(x);
@@ -51,6 +52,8 @@ public class WorkRoomService {
         workRoom.setFloor(floor);
         workRoom.setWidth(width);
         workRoom.setHeight(height);
+        workRoom.setDoors(doors);
+        workRoom.setNeighbors(neighbors);
         workRoomRepository.save(workRoom);
     }
 }
