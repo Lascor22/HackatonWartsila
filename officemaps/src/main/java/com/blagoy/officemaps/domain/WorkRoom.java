@@ -28,8 +28,10 @@ public class WorkRoom extends ObjectMap {
     private long floorNumber;
 
     @OneToMany(mappedBy = "workRoom", cascade = CascadeType.ALL)
-    @JsonIgnore
     private List<Employee> employees;
+
+    @OneToMany(mappedBy = "workRoom", cascade = CascadeType.ALL)
+    private List<Event> events;
 
     @OneToMany(fetch = FetchType.LAZY)
     private List<WorkingTable> workingTables;
@@ -64,5 +66,13 @@ public class WorkRoom extends ObjectMap {
 
     public void setFloorNumber(long floorNumber) {
         this.floorNumber = floorNumber;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
     }
 }

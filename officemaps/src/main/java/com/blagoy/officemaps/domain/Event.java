@@ -1,5 +1,6 @@
 package com.blagoy.officemaps.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -17,6 +18,10 @@ public class Event {
 
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Employee> employeeList;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private WorkRoom workRoom;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private ObjectMap objectMap;
@@ -87,5 +92,13 @@ public class Event {
 
     public void setDescription(String description) {
         Description = description;
+    }
+
+    public WorkRoom getWorkRoom() {
+        return workRoom;
+    }
+
+    public void setWorkRoom(WorkRoom workRoom) {
+        this.workRoom = workRoom;
     }
 }

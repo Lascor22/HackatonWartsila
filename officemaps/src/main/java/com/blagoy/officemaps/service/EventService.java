@@ -38,7 +38,7 @@ public class EventService {
         List<Employee> employees = eventForm.getEmployees().stream().map(name -> employeeService.findByName(name)).collect(Collectors.toList());
         event.setEmployeeList(employees);
         event.setObjectMap(objectMap);
-        event.setName(event.getName());
+        event.setName(eventForm.getName());
         event.setCreator(creator);
         event.setDescription(eventForm.getDescription());
         eventRepository.save(event);

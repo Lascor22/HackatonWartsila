@@ -2,9 +2,10 @@ package com.blagoy.officemaps.controller;
 
 
 import com.blagoy.officemaps.domain.Employee;
+import com.blagoy.officemaps.domain.Event;
 import com.blagoy.officemaps.domain.WorkRoom;
 import com.blagoy.officemaps.form.WorkRoomForm;
-import com.blagoy.officemaps.service.FloorService;
+import com.blagoy.officemaps.service.ObjectMapService;
 import com.blagoy.officemaps.service.WorkRoomService;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,13 +14,12 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/api/0")
-public class WorkRoomController {
+public class WorkRoomController extends ObjectMapController {
     private final WorkRoomService workRoomService;
-    private final FloorService floorService;
 
-    public WorkRoomController(WorkRoomService workRoomService, FloorService floorService) {
+    public WorkRoomController(WorkRoomService workRoomService, ObjectMapService objectMapService) {
+        super(objectMapService);
         this.workRoomService = workRoomService;
-        this.floorService = floorService;
     }
 
     @GetMapping("workrooms")
@@ -46,5 +46,11 @@ public class WorkRoomController {
     public List<Employee> findEmployeesInWorkRoom(@PathVariable("number") long number) {
         WorkRoom workRoom = findByNumber(number);
         return workRoom.getEmployees();
+    }
+
+    @GetMapping("workroom/number/{number}/events")
+    public List<Event> findEventsInWorkRoom(@PathVariable("number") long number) {
+        WorkRoom workRoom = findByNumber(number);
+        return workRoom.getEvents();
     }
 }
