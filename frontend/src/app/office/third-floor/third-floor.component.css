@@ -1,4 +1,18 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  width: 1100px;
+  height: 800px;
+}
+
+.abc {
+  height: auto;
+}
+
 .inner-container {
-  width: 1000px;
+  width: 1500px;
   height: 500px;
+}
+
+.svg {
 }

@@ -1,6 +1,7 @@
 package com.blagoy.officemaps.service;
 
 import com.blagoy.officemaps.domain.*;
+import com.blagoy.officemaps.form.TransitionForm;
 import com.blagoy.officemaps.repository.TransitionRepository;
 import org.springframework.stereotype.Service;
 
@@ -22,19 +23,15 @@ public class TransitionService {
         return transitionRepository.findById(id).orElse(null);
     }
 
-    public void createTransition(Floor floor, TransitionType transitionType, double x, double y,
-                                 double height, double width, List<Door> doors, List<ObjectMap> neighbors) {
+    public void createTransition(TransitionForm transitionForm, Floor floor) {
         Transition transition = new Transition();
-        transition.setType(transitionType);
+        transition.setType(transitionForm.getType());
         transition.setFloor(floor);
-        transition.setHeight(height);
-        transition.setWidth(width);
-        Point point = new Point();
-        point.setX(x);
-        point.setY(y);
-        transition.setPoint(point);
-        transition.setDoors(doors);
-        transition.setNeighbors(neighbors);
+        transition.setHeight(transitionForm.getHeight());
+        transition.setWidth(transitionForm.getWidth());
+        transition.setPoint(transitionForm.getPoint());
+        transition.setDoors(transitionForm.getDoors());
+        transition.setNeighbors(transitionForm.getNeighbors());
         transitionRepository.save(transition);
     }
 }

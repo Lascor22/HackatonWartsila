@@ -33,7 +33,7 @@ public class Employee {
     @ManyToOne(fetch = FetchType.LAZY)
     private WorkRoom workRoom;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "employee_event",
             joinColumns = @JoinColumn(name = "employee_id"),
             inverseJoinColumns = @JoinColumn(name = "event_id"))
