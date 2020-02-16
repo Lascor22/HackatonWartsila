@@ -1,6 +1,9 @@
 package com.blagoy.officemaps.service;
 
-import com.blagoy.officemaps.domain.*;
+import com.blagoy.officemaps.domain.Door;
+import com.blagoy.officemaps.domain.Employee;
+import com.blagoy.officemaps.domain.WorkRoom;
+import com.blagoy.officemaps.domain.WorkingTable;
 import com.blagoy.officemaps.form.WorkRoomForm;
 import com.blagoy.officemaps.repository.ObjectMapRepository;
 import com.blagoy.officemaps.repository.WorkRoomRepository;
@@ -60,6 +63,7 @@ public class WorkRoomService extends ObjectMapService {
         workRoom.setHeight(workRoomForm.getHeight());
         workRoom.setDoors(workRoomForm.getDoors());
         workRoom.setNeighbors(workRoomForm.getNeighbors());
+
         pointService.save(workRoomForm.getPoint());
         for (Door door : workRoom.getDoors()) {
             doorService.save(door);
@@ -70,4 +74,5 @@ public class WorkRoomService extends ObjectMapService {
     public void save(WorkRoom workRoom) {
         workRoomRepository.save(workRoom);
     }
+
 }

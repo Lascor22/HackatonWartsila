@@ -58,4 +58,8 @@ public class TransitionService extends ObjectMapService {
 
         transitionRepository.save(transition);
     }
+
+    public void save(Transition transition) {
+        transitionRepository.save(transition);
+    }
 }

@@ -1,6 +1,5 @@
 package com.blagoy.officemaps.controller;
 
-import com.blagoy.officemaps.domain.Employee;
 import com.blagoy.officemaps.domain.WorkingTable;
 import com.blagoy.officemaps.form.WorkingTableForm;
 import com.blagoy.officemaps.service.WorkRoomService;

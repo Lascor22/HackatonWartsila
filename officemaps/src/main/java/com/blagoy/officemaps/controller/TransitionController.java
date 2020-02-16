@@ -2,7 +2,6 @@ package com.blagoy.officemaps.controller;
 
 import com.blagoy.officemaps.domain.Transition;
 import com.blagoy.officemaps.form.TransitionForm;
-import com.blagoy.officemaps.service.ObjectMapService;
 import com.blagoy.officemaps.service.TransitionService;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +12,7 @@ import java.util.List;
 public class TransitionController extends ObjectMapController {
     private final TransitionService transitionService;
 
-    public TransitionController(TransitionService transitionService, ObjectMapService objectMapService) {
+    public TransitionController(TransitionService transitionService) {
         this.transitionService = transitionService;
     }
 
