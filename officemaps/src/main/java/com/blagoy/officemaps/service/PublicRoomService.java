@@ -10,9 +10,13 @@ import java.util.List;
 @Service
 public class PublicRoomService {
     private final PublicRoomRepository publicRoomRepository;
+    private final PointService pointService;
+    private final DoorService doorService;
 
-    public PublicRoomService(PublicRoomRepository publicRoomRepository) {
+    public PublicRoomService(PublicRoomRepository publicRoomRepository, PointService pointService, DoorService doorService) {
         this.publicRoomRepository = publicRoomRepository;
+        this.pointService = pointService;
+        this.doorService = doorService;
     }
 
     public List<PublicRoom> findAll() {
@@ -32,6 +36,10 @@ public class PublicRoomService {
         publicRoom.setType(publicRoomForm.getType());
         publicRoom.setDoors(publicRoomForm.getDoors());
         publicRoom.setNeighbors(publicRoomForm.getNeighbors());
+        pointService.save(publicRoomForm.getPoint());
+        for (Door door : publicRoomForm.getDoors()) {
+            doorService.save(door);
+        }
         publicRoomRepository.save(publicRoom);
     }
 }

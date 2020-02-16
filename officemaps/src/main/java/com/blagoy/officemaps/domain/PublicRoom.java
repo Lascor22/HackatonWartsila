@@ -16,8 +16,6 @@ public class PublicRoom extends ObjectMap {
     @ManyToOne(fetch = FetchType.LAZY)
     private Floor floor;
 
-    @NotNull
-    @NotEmpty
     @JoinColumn(name = "type", nullable = false)
     private PublicRoomType type;
 
