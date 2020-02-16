@@ -38,4 +38,8 @@ public class EventService {
         event.setDescription(eventForm.getDescription());
         eventRepository.save(event);
     }
+
+    public Event findByName(String name) {
+        return eventRepository.findByName(name);
+    }
 }

@@ -31,6 +31,7 @@ public class Employee {
         this.workRoom = workRoom;
     }
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private WorkRoom workRoom;
