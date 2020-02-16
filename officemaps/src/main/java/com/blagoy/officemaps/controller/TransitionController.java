@@ -1,11 +1,8 @@
 package com.blagoy.officemaps.controller;
 
-import com.blagoy.officemaps.domain.Door;
-import com.blagoy.officemaps.domain.ObjectMap;
 import com.blagoy.officemaps.domain.Transition;
-import com.blagoy.officemaps.domain.TransitionType;
 import com.blagoy.officemaps.form.TransitionForm;
-import com.blagoy.officemaps.service.FloorService;
+import com.blagoy.officemaps.service.ObjectMapService;
 import com.blagoy.officemaps.service.TransitionService;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,13 +10,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/0")
-public class TransitionController {
+public class TransitionController extends ObjectMapController {
     private final TransitionService transitionService;
-    private final FloorService floorService;
 
-    public TransitionController(TransitionService transitionService, FloorService floorService) {
+    public TransitionController(TransitionService transitionService, ObjectMapService objectMapService) {
+        super(objectMapService);
         this.transitionService = transitionService;
-        this.floorService = floorService;
     }
 
     @GetMapping("transitions")
