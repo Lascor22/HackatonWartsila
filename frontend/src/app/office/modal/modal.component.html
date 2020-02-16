@@ -3,10 +3,9 @@
     <button mat-raised-button id="modal-cancel-button" (click)="closeModal()">Go back</button>
   </div>
   <div class="header">
-    <h1>Room {{roomNumber}} </h1>
+    <h1 class="roomNumber" *ngIf="!isAntresol">Room {{roomNumber}} </h1>
+    <h1 class="antresolNumber" *ngIf="isAntresol"> Room {{roomNumber}} -2 </h1>
   </div>
-  <!--</footer>-->
-  <!--<button (click)="closeModal()" value="X"></button>-->
 
   <div class="middle-container">
     <div class="middle-working-room">
@@ -14,13 +13,12 @@
       <app-working-room-antresol *ngIf="isAntresol"></app-working-room-antresol>
     </div>
     <div class="employeesOrEvents">
-      <!--<p *ngFor="let emp of employees">{{emp}}</p>-->
       <div *ngIf="isEmployeesSelected" class="employees">
         <button mat-raised-button *ngFor="let emp of employees">{{emp.name}}</button>
       </div>
 
       <div *ngIf="!isEmployeesSelected" class="events">
-        <button mat-raised-button *ngFor="let ev of events">{{ev}}</button>
+        <button mat-raised-button *ngFor="let ev of events">{{ev.name}}</button>
       </div>
 
       <button class="toggleButton" mat-raised-button *ngIf="isEmployeesSelected" (click)="toggleIsEmployeesSelected()">Show events</button>
@@ -30,6 +28,7 @@
   </div>
 
   <div class="bottom-container">
+    <button mat-raised-button (click)="openEventCreateModal()">Create Event</button>
     <button *ngIf="!isAntresol" mat-raised-button (click)="toggleIsAntresol()">Show Antresol</button>
     <button *ngIf="isAntresol"  mat-raised-button (click)="toggleIsAntresol()">Show room</button>
   </div>

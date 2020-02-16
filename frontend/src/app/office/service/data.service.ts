@@ -15,8 +15,12 @@ export class DataService {
     return this.httpClient.get('http://localhost:8080/api/0/workroom/number/' + roomNumber + '/employees');
   }
 
+  public getEventsFromWorkingRoom(roomNumber: number): Observable<any> {
+    return this.httpClient.get('http://localhost:8080/api/0/workroom/number/' + roomNumber + '/events');
+  }
+
   public getWorkingRoom(roomNumber: number): Observable<any> {
-    return this.httpClient.get('http://localhost:8080/api/0/workroom/number/105');
-    // return this.httpClient.get<WorkingRoomDTO>('http://localhost:8080/api/0/workroom/number/' + roomNumber);
+    // return this.httpClient.get('http://localhost:8080/api/0/workroom/number/105');
+    return this.httpClient.get<WorkingRoomDTO>('http://localhost:8080/api/0/workroom/number/' + roomNumber);
   }
 }

@@ -1,0 +1,31 @@
+.event-create-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  text-align: center;
+}
+
+.event-create-form {
+  display: flex;
+  flex-direction: column;
+  /*justify-content: center;*/
+  overflow: hidden;
+  margin-left: 30px;
+}
+
+.event-create-form mat-form-field {
+  max-width: 300px;
+}
+
+.container-bottom {
+  display: flex;
+  justify-content: center;
+}
+
+.container-bottom button {
+  width: 150px;
+  height: 35px;
+}
+
