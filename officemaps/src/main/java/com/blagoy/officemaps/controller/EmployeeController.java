@@ -30,6 +30,11 @@ public class EmployeeController {
         return employeeService.findById(id);
     }
 
+    @GetMapping("employee/{name}")
+    public Employee findByName(@PathVariable("name") String name) {
+        return employeeService.findByName(name);
+    }
+
     @PostMapping("employee")
     public void createEmployee(String name, long roomNumber, long workingTableNumber) {
         WorkRoom workRoom = workRoomService.findByNumber(roomNumber);
