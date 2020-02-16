@@ -1,6 +1,7 @@
 package com.blagoy.officemaps.controller;
 
 
+import com.blagoy.officemaps.domain.Employee;
 import com.blagoy.officemaps.domain.WorkRoom;
 import com.blagoy.officemaps.form.WorkRoomForm;
 import com.blagoy.officemaps.service.FloorService;
@@ -39,5 +40,11 @@ public class WorkRoomController {
     @PostMapping("workroom")
     public void createWorkingRoom(@RequestBody WorkRoomForm workRoomForm) {
         workRoomService.createWorkRoom(workRoomForm);
+    }
+
+    @GetMapping("workroom/number/{number}/employees")
+    public List<Employee> findEmployeesInWorkRoom(@PathVariable("number") long number) {
+        WorkRoom workRoom = findByNumber(number);
+        return workRoom.getEmployees();
     }
 }

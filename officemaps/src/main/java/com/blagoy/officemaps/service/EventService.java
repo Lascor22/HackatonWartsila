@@ -8,13 +8,16 @@ import com.blagoy.officemaps.repository.EventRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EventService {
     private final EventRepository eventRepository;
+    private final EmployeeService employeeService;
 
-    public EventService(EventRepository eventRepository) {
+    public EventService(EventRepository eventRepository, EmployeeService employeeService) {
         this.eventRepository = eventRepository;
+        this.employeeService = employeeService;
     }
 
     public void create(Event event) {
@@ -31,10 +34,12 @@ public class EventService {
 
     public void createEvent(EventForm eventForm, ObjectMap objectMap) {
         Event event = new Event();
-        event.setEmployeeList(eventForm.getEmployees());
+        Employee creator = employeeService.findByName(eventForm.getCreator());
+        List<Employee> employees = eventForm.getEmployees().stream().map(name -> employeeService.findByName(name)).collect(Collectors.toList());
+        event.setEmployeeList(employees);
         event.setObjectMap(objectMap);
         event.setName(event.getName());
-        event.setCreator(eventForm.getCreator());
+        event.setCreator(creator);
         event.setDescription(eventForm.getDescription());
         eventRepository.save(event);
     }

@@ -1,22 +1,12 @@
 package com.blagoy.officemaps.form;
 
-import com.blagoy.officemaps.domain.Employee;
-
 import java.util.List;
 
 public class EventForm {
 
-    private Employee creator;
+    private String creator;
     private String name;
-    private List<Employee> employees;
-
-    public Employee getCreator() {
-        return creator;
-    }
-
-    public void setCreator(Employee creator) {
-        this.creator = creator;
-    }
+    private List<String> employees;
 
     public String getName() {
         return name;
@@ -24,14 +14,6 @@ public class EventForm {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
     }
 
     public String getDescription() {
@@ -51,5 +33,21 @@ public class EventForm {
 
     public void setRoomId(long roomId) {
         this.roomId = roomId;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    public List<String> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<String> employees) {
+        this.employees = employees;
     }
 }

@@ -21,6 +21,7 @@ public class Employee {
     private String name;
 
     @OneToOne
+    @JsonIgnore
     private WorkingTable workingTable;
 
     public WorkRoom getWorkRoom() {
