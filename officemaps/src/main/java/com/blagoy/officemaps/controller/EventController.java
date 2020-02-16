@@ -1,6 +1,5 @@
 package com.blagoy.officemaps.controller;
 
-import com.blagoy.officemaps.domain.Employee;
 import com.blagoy.officemaps.domain.Event;
 import com.blagoy.officemaps.domain.ObjectMap;
 import com.blagoy.officemaps.form.EventForm;
