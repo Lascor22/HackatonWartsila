@@ -17,6 +17,9 @@ public class ObjectMap implements Comparable<ObjectMap> {
     @OneToMany
     private List<Door> doors;
 
+    @OneToMany
+    private List<Event> events;
+
     @JoinColumn(name = "point", nullable = false)
     @OneToOne
     private Point point;
@@ -80,5 +83,13 @@ public class ObjectMap implements Comparable<ObjectMap> {
 
     public void setNeighbors(List<ObjectMap> neighbors) {
         this.neighbors = neighbors;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
     }
 }

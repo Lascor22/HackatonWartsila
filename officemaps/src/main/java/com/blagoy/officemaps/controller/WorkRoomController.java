@@ -18,7 +18,6 @@ public class WorkRoomController extends ObjectMapController {
     private final WorkRoomService workRoomService;
 
     public WorkRoomController(WorkRoomService workRoomService, ObjectMapService objectMapService) {
-        super(objectMapService);
         this.workRoomService = workRoomService;
     }
 

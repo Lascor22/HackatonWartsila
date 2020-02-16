@@ -15,7 +15,6 @@ public class PublicRoomController extends ObjectMapController {
     private final PublicRoomService publicRoomService;
 
     public PublicRoomController(PublicRoomService publicRoomService, ObjectMapService objectMapService) {
-        super(objectMapService);
         this.publicRoomService = publicRoomService;
     }
 

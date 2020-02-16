@@ -3,6 +3,7 @@ package com.blagoy.officemaps.service;
 import com.blagoy.officemaps.domain.Employee;
 import com.blagoy.officemaps.domain.Event;
 import com.blagoy.officemaps.domain.ObjectMap;
+import com.blagoy.officemaps.domain.PublicRoom;
 import com.blagoy.officemaps.form.EventForm;
 import com.blagoy.officemaps.repository.EventRepository;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,7 @@ public class EventService {
         event.setName(eventForm.getName());
         event.setCreator(creator);
         event.setDescription(eventForm.getDescription());
+        objectMap.getEvents().add(event);
         eventRepository.save(event);
     }
 

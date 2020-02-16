@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
-public class PublicRoomService {
+public class PublicRoomService extends ObjectMapService {
     private final PublicRoomRepository publicRoomRepository;
     private final PointService pointService;
     private final DoorService doorService;

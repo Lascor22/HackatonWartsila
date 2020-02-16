@@ -13,11 +13,9 @@ import java.util.List;
 @RequestMapping("/api/0")
 public class EmployeeController {
     private final EmployeeService employeeService;
-    private final WorkRoomService workRoomService;
 
     public EmployeeController(EmployeeService employeeService, WorkRoomService workRoomService) {
         this.employeeService = employeeService;
-        this.workRoomService = workRoomService;
     }
 
     @GetMapping("employees")

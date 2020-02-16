@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class WorkRoomService {
+public class WorkRoomService extends ObjectMapService {
 
     private final WorkRoomRepository workRoomRepository;
     private final PointService pointService;
@@ -20,13 +20,16 @@ public class WorkRoomService {
         this.doorService = doorService;
     }
 
+    @Override
     public List<WorkRoom> findAll() {
         return workRoomRepository.findAll();
     }
 
+    @Override
     public WorkRoom findById(long id) {
         return workRoomRepository.findById(id).orElse(null);
     }
+
 
     public WorkRoom findByNumber(long number) {
         return workRoomRepository.findByNumber(number);
