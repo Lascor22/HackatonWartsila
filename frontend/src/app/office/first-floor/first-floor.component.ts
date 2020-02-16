@@ -26,7 +26,7 @@ export class FirstFloorComponent implements OnInit {
     this.popupConfig.disableClose = true;
     this.popupConfig.id = 'modal-component';
     this.popupConfig.height = '660px';
-    this.popupConfig.width = '700px';
+    this.popupConfig.width = '900px';
     this.popupConfig.maxHeight = '660px';
   }
 
@@ -46,10 +46,11 @@ export class FirstFloorComponent implements OnInit {
   }
 
   onWorkingRoomClick(event: MouseEvent) {
-    // const roomNumber: number = +(event.target as Element).innerHTML;
-    // this.dataService.getWorkingRoom(roomNumber).subscribe(response => {
-    //   console.log(response);
-    // });
+    const roomNumber: number = +(event.target as Element).innerHTML;
+    console.log(roomNumber);
+    this.dataService.getWorkingRoom(roomNumber).subscribe(response => {
+      console.log(response);
+    });
     this.openModal();
   }
 

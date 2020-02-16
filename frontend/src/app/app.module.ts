@@ -16,6 +16,7 @@ import {OfficeRoutingModule} from './office/office-routing.module';
 import {RouterModule} from '@angular/router';
 import { TopMenuComponent } from './office/top-menu/top-menu.component';
 import {MatButtonModule} from '@angular/material/button';
+import {MatIcon, MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatButtonModule,
     MatDialogModule,
     OfficeRoutingModule,
-    RouterModule
+    RouterModule,
+    MatIconModule
   ],
   entryComponents: [],
   providers: [],

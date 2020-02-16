@@ -1,12 +1,9 @@
 <div class="top-menu">
-  <p>
-    <!--<mdb-icon fas icon="angle-down"></mdb-icon>-->
-  <a routerLink="/office/floor/1">first floor</a>
-  <!--<a routerLink="/office/floor/1" inlineSVG="../../assets/icons/angle-down-solid.svg">first floor</a>-->
-  </p>
-  <p>
-    <a routerLink="/office/floor/3">third floor</a>
-  </p>
-
+  <div class="buttons">
+    <div> <button routerLink="/office/floor/1"  [disabled]="isFirstFloor" (click)="toggleIsFirstFloor()"
+                  mat-raised-button>&#8592;Previous Floor</button></div>
+    <div> <button routerLink="/office/floor/3"  [disabled]="!isFirstFloor" (click)="toggleIsFirstFloor()"
+                  mat-raised-button>Next Floor&#8594;</button></div>
+  </div>
   <i class="fas fa-angle-down"></i>
 </div>

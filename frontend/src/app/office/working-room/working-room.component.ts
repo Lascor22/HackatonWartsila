@@ -7,7 +7,6 @@ import {MatDialog, MatDialogRef} from '@angular/material/dialog';
   styleUrls: ['./working-room.component.css']
 })
 export class WorkingRoomComponent implements OnInit {
-
   constructor(public dialogRef: MatDialogRef<WorkingRoomComponent>) { }
 
   ngOnInit(): void {

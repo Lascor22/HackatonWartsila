@@ -28,6 +28,7 @@
     "@progress/kendo-angular-common": "^1.2.2",
     "@progress/kendo-angular-popup": "^3.0.5",
     "angular-material": "^1.1.21",
+    "angular-material-icons": "^0.7.1",
     "angular-modal": "^0.5.0",
     "angular-modal-service": "^0.15.3",
     "angular-svg": "^2.0.8",

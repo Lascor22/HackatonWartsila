@@ -17,16 +17,20 @@
   margin-top: 0;
 }
 
-.employees {
+.employeesOrEvents {
   display: flex;
   flex-direction: column;
   margin-right: 20px;
 }
 
-.employees button {
+.employeesOrEvents button {
   width: 150px;
-  margin-bottom: 7px;
+  margin-bottom: 5px;
   /*margin-right: 20px*/
+}
+
+.toggleButton {
+  background: lightgray;
 }
 
 .middle-container {
@@ -40,7 +44,7 @@
   width: 600px;
 }
 
-.employees {
+.employeesOrEvents {
   width: 200px;
 }
 
@@ -50,6 +54,6 @@
 }
 
 .bottom-container button {
-  width: 100px;
+  width: 150px;
   margin-left: 165px;
 }

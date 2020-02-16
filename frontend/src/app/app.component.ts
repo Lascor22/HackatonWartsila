@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,6 @@ import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 })
 export class AppComponent {
   title = 'frontend';
-  clickX: number;
-  clickY: number;
 
   constructor(private matDialog: MatDialog) {
   }

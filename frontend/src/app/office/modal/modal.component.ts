@@ -8,12 +8,24 @@ import {Location} from '@angular/common';
 })
 export class ModalComponent implements OnInit {
   public isAntresol = false;
-  public employees: string[] = ['Blagoy Dimitrov', 'Blagoy Dimitrov', 'Blagoy Dimitrov', 'Blagoy Dimitrov', 'Blagoy Dimitrov', 'Blagoy Dimitrov', 'Blagoy Dimitrov', 'Blagoy Dimitrov', 'Blagoy Dimitrov', 'Blagoy Dimitrov', 'Blagoy Dimitrov'];
+  public isEmployeesSelected = true;
+  public employees: string[] = ['Blagoy Dimitrov', 'Blagoy Dimitrov', 'Blagoy Dimitrov', 'Blagoy Dimitrov',
+    'Blagoy Dimitrov', 'Blagoy Dimitrov', 'Blagoy Dimitrov', 'Blagoy Dimitrov', 'Blagoy Dimitrov',
+    'Blagoy Dimitrov', 'Blagoy Dimitrov'];
+
+  public events: string[] = ['Blagoy\'s birthday', 'Blagoy\'s birthday', 'Blagoy\'s birthday', 'Blagoy\'s birthday', ];
+
   constructor(public dialogRef: MatDialogRef<ModalComponent>,
               private location: Location) { }
 
   public toggleIsAntresol() {
     this.isAntresol = !this.isAntresol;
+  }
+
+  public toggleIsEmployeesSelected() {
+    console.log('toggle');
+    this.isEmployeesSelected = !this.isEmployeesSelected;
+    console.log(this.isEmployeesSelected);
   }
 
   actionFunction() {

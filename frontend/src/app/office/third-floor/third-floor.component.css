@@ -14,5 +14,9 @@
   height: 500px;
 }
 
+text {
+  cursor: pointer;
+}
+
 .svg {
 }
