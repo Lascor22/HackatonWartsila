@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {MatDialogRef} from '@angular/material/dialog';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Location} from '@angular/common';
+import {DataService} from '../service/data.service';
+import {EmployeeDTO} from '../dto/DTOs';
+import {Data} from '@angular/router';
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
@@ -9,14 +12,18 @@ import {Location} from '@angular/common';
 export class ModalComponent implements OnInit {
   public isAntresol = false;
   public isEmployeesSelected = true;
-  public employees: string[] = ['Blagoy Dimitrov', 'Blagoy Dimitrov', 'Blagoy Dimitrov', 'Blagoy Dimitrov',
-    'Blagoy Dimitrov', 'Blagoy Dimitrov', 'Blagoy Dimitrov', 'Blagoy Dimitrov', 'Blagoy Dimitrov',
-    'Blagoy Dimitrov', 'Blagoy Dimitrov'];
+  public roomNumber: number;
 
+  public employees: EmployeeDTO[];
   public events: string[] = ['Blagoy\'s birthday', 'Blagoy\'s birthday', 'Blagoy\'s birthday', 'Blagoy\'s birthday', ];
 
   constructor(public dialogRef: MatDialogRef<ModalComponent>,
-              private location: Location) { }
+              private location: Location,
+              @Inject(MAT_DIALOG_DATA) public data,
+              private dataService: DataService) {
+    this.employees = data;
+    this.roomNumber = +this.location.path().substr(this.location.path().lastIndexOf('/') + 1);
+  }
 
   public toggleIsAntresol() {
     this.isAntresol = !this.isAntresol;
@@ -26,6 +33,10 @@ export class ModalComponent implements OnInit {
     console.log('toggle');
     this.isEmployeesSelected = !this.isEmployeesSelected;
     console.log(this.isEmployeesSelected);
+  }
+
+  reloadData() {
+
   }
 
   actionFunction() {
