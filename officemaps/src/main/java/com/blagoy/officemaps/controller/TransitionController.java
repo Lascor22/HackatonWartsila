@@ -14,7 +14,6 @@ public class TransitionController extends ObjectMapController {
     private final TransitionService transitionService;
 
     public TransitionController(TransitionService transitionService, ObjectMapService objectMapService) {
-        super(objectMapService);
         this.transitionService = transitionService;
     }
 

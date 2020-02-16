@@ -2,6 +2,7 @@ package com.blagoy.officemaps.service;
 
 import com.blagoy.officemaps.domain.*;
 import com.blagoy.officemaps.form.WorkRoomForm;
+import com.blagoy.officemaps.repository.ObjectMapRepository;
 import com.blagoy.officemaps.repository.WorkRoomRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,8 @@ public class WorkRoomService extends ObjectMapService {
     private final PointService pointService;
     private final DoorService doorService;
 
-    public WorkRoomService(WorkRoomRepository workRoomRepository, PointService pointService, DoorService doorService) {
+    public WorkRoomService(ObjectMapRepository objectMapRepository, WorkRoomRepository workRoomRepository, PointService pointService, DoorService doorService) {
+        super(objectMapRepository);
         this.workRoomRepository = workRoomRepository;
         this.pointService = pointService;
         this.doorService = doorService;

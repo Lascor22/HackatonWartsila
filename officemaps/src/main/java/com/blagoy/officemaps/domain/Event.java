@@ -20,10 +20,6 @@ public class Event {
     private List<Employee> employeeList;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
-    private WorkRoom workRoom;
-
-    @ManyToOne(fetch = FetchType.LAZY)
     private ObjectMap objectMap;
 
     @OneToOne
@@ -94,11 +90,4 @@ public class Event {
         Description = description;
     }
 
-    public WorkRoom getWorkRoom() {
-        return workRoom;
-    }
-
-    public void setWorkRoom(WorkRoom workRoom) {
-        this.workRoom = workRoom;
-    }
 }

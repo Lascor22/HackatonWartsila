@@ -2,6 +2,7 @@ package com.blagoy.officemaps.service;
 
 import com.blagoy.officemaps.domain.*;
 import com.blagoy.officemaps.form.PublicRoomForm;
+import com.blagoy.officemaps.repository.ObjectMapRepository;
 import com.blagoy.officemaps.repository.PublicRoomRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,16 +15,19 @@ public class PublicRoomService extends ObjectMapService {
     private final PointService pointService;
     private final DoorService doorService;
 
-    public PublicRoomService(PublicRoomRepository publicRoomRepository, PointService pointService, DoorService doorService) {
+    public PublicRoomService(ObjectMapRepository objectMapRepository, PublicRoomRepository publicRoomRepository, PointService pointService, DoorService doorService) {
+        super(objectMapRepository);
         this.publicRoomRepository = publicRoomRepository;
         this.pointService = pointService;
         this.doorService = doorService;
     }
 
+    @Override
     public List<PublicRoom> findAll() {
         return publicRoomRepository.findAll();
     }
 
+    @Override
     public PublicRoom findById(long id) {
         return publicRoomRepository.findById(id).orElse(null);
     }

@@ -7,11 +7,19 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public abstract class ObjectMapService {
+public class ObjectMapService {
 
-    public ObjectMapService() {}
+    private final ObjectMapRepository objectMapRepository;
 
-    public abstract List<? extends ObjectMap> findAll();
+    public ObjectMapService(ObjectMapRepository objectMapRepository) {
+        this.objectMapRepository = objectMapRepository;
+    }
 
-    public abstract ObjectMap findById(long id);
+    public List<? extends ObjectMap> findAll() {
+        return objectMapRepository.findAll();
+    }
+
+    public ObjectMap findById(long id) {
+        return objectMapRepository.findById(id).orElse(null);
+    }
 }

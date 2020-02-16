@@ -1,5 +1,7 @@
 package com.blagoy.officemaps.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,6 +20,7 @@ public class ObjectMap implements Comparable<ObjectMap> {
     private List<Door> doors;
 
     @OneToMany
+    @JsonIgnore
     private List<Event> events;
 
     @JoinColumn(name = "point", nullable = false)

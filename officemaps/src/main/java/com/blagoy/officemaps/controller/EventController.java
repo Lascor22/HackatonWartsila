@@ -3,8 +3,7 @@ package com.blagoy.officemaps.controller;
 import com.blagoy.officemaps.domain.Event;
 import com.blagoy.officemaps.domain.ObjectMap;
 import com.blagoy.officemaps.form.EventForm;
-import com.blagoy.officemaps.service.EventService;
-import com.blagoy.officemaps.service.ObjectMapService;
+import com.blagoy.officemaps.service.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,11 +12,15 @@ import java.util.List;
 @RequestMapping("/api/0")
 public class EventController {
     private final EventService eventService;
-    private final ObjectMapService objectMapService;
+    private final WorkRoomService workRoomService;
+    private final TransitionService transitionService;
+    private final PublicRoomService publicRoomService;
 
-    public EventController(EventService eventService, ObjectMapService objectMapService) {
+    public EventController(EventService eventService, WorkRoomService workRoomService, TransitionService transitionService, PublicRoomService publicRoomService) {
         this.eventService = eventService;
-        this.objectMapService = objectMapService;
+        this.workRoomService = workRoomService;
+        this.transitionService = transitionService;
+        this.publicRoomService = publicRoomService;
     }
 
     @GetMapping("events")
@@ -27,8 +30,30 @@ public class EventController {
 
     @PostMapping("event")
     public void createEvent(@RequestBody EventForm eventForm) {
-        ObjectMap room = objectMapService.findById(eventForm.getRoomId());
-        eventService.createEvent(eventForm, room);
+        ObjectMap objectMap = null, tempMap;
+        try {
+            tempMap = workRoomService.findById(eventForm.getRoomId());
+            if (tempMap != null) {
+                objectMap = tempMap;
+            }
+        } catch (Exception e) {
+
+        }
+        try {
+            tempMap = transitionService.findById(eventForm.getRoomId());
+            if (tempMap != null) {
+                objectMap = tempMap;
+            }
+        } catch (Exception e) {}
+        try {
+            tempMap = publicRoomService.findById(eventForm.getRoomId());
+            if (tempMap != null) {
+                objectMap = tempMap;
+            }
+        } catch (Exception e) {
+
+        }
+        eventService.createEvent(eventForm, objectMap);
     }
 
     @GetMapping("event/{id}")

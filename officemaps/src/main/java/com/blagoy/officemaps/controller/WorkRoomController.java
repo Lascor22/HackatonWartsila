@@ -9,6 +9,7 @@ import com.blagoy.officemaps.service.ObjectMapService;
 import com.blagoy.officemaps.service.WorkRoomService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
@@ -50,6 +51,6 @@ public class WorkRoomController extends ObjectMapController {
     @GetMapping("workroom/number/{number}/events")
     public List<Event> findEventsInWorkRoom(@PathVariable("number") long number) {
         WorkRoom workRoom = findByNumber(number);
-        return workRoom.getEvents();
+        return workRoom.getEvents() == null? new ArrayList<>() : workRoom.getEvents();
     }
 }
