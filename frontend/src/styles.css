@@ -1,5 +1,5 @@
 html{
-  overflow: no-content;
+  overflow: hidden;
 }
 
 /*body {*/
@@ -17,12 +17,10 @@ that have an id of `modal-component` */
 mat-dialog-container#modal-component {
   border: 3px solid #262626;
   border-radius: 11px;
-  background-color: #1a1a1a;
 }
 
 #logout-button {
   color: white;
-  background-color: #4b4b4b;
   border: 1px solid black;
 }
 
@@ -44,9 +42,7 @@ mat-dialog-container#modal-component {
 
 #modal-action-button {
   margin-right: 30px;
-  background-color:#3b3b3b;
 }
 
 #modal-cancel-button {
-  background-color: #4e4e4e;
 }

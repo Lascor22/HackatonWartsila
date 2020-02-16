@@ -1,15 +1,13 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DataService} from '../service/data.service';
 import {WorkingRoomDTO} from '../dto/DTOs';
-import {ModalModule} from 'ngb-modal';
-import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
-import {ModalComponent} from '../modal/modal.component';
 import {WorkingRoomComponent} from '../working-room/working-room.component';
 
 @Component({
   selector: 'app-first-floor',
-  templateUrl: './first-floor.component.html'
+  templateUrl: './first-floor.component.html',
+  styleUrls: ['./first-floor.component.css']
 })
 export class FirstFloorComponent implements OnInit {
   selectedRoom: WorkingRoomDTO;
@@ -24,10 +22,11 @@ export class FirstFloorComponent implements OnInit {
   openModal() {
     const dialogConfig = new MatDialogConfig();
     // The user can't close the dialog by clicking outside its body
-    dialogConfig.disableClose = true;
+    dialogConfig.disableClose = false;
     dialogConfig.id = 'modal-component';
-    dialogConfig.height = '350px';
-    dialogConfig.width = '600px';
+    dialogConfig.height = '660px';
+    dialogConfig.width = '700px';
+    dialogConfig.maxHeight = '660px';
     // https://material.angular.io/components/dialog/overview
     const modalDialog = this.matDialog.open(WorkingRoomComponent, dialogConfig);
   }
