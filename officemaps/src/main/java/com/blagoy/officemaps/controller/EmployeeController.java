@@ -36,6 +36,5 @@ public class EmployeeController {
     @PostMapping("employee")
     public void createEmployee(@RequestBody EmployeeForm employeeForm) {
         employeeService.save(employeeForm);
-
     }
 }
