@@ -1,12 +1,33 @@
 <div id="modal-content-wrapper">
-  <header id="modal-header">
-    <h1 id="modal-title">Are you sure you want to logout?</h1>
-  </header>
-  <section id="modal-body">
-    <p>If you logout bad things might happen, but don't mind me, I'm just the description in a modal...</p>
-  </section>
-  <footer id="modal-footer">
-    <button mat-raised-button id="modal-action-button" (click)="actionFunction()">Logout</button>
+  <!--<header id="modal-header">-->
+  <!--<h1 id="modal-title">Are you sure you want to logout?</h1>-->
+  <!--</header>-->
+  <!--<section id="modal-body">-->
+  <!--<p>If you logout bad things might happen, but don't mind me, I'm just the description in a modal...</p>-->
+  <!--</section>-->
+  <!--<footer id="modal-footer">-->
+  <!--<button mat-raised-button id="modal-action-button" (click)="actionFunction()">Logout</button>-->
+  <div class="top-container">
     <button mat-raised-button id="modal-cancel-button" (click)="closeModal()">Go back</button>
-  </footer>
+  </div>
+  <div class="header">
+    <h1>Room 228 </h1>
+  </div>
+  <!--</footer>-->
+  <!--<button (click)="closeModal()" value="X"></button>-->
+
+  <div class="middle-container">
+    <div class="middle-working-room">
+      <app-working-room *ngIf="!isAntresol"></app-working-room>
+      <app-working-room-antresol *ngIf="isAntresol"></app-working-room-antresol>
+    </div>
+    <div class="employees">
+      <!--<p *ngFor="let emp of employees">{{emp}}</p>-->
+      <button mat-raised-button *ngFor="let emp of employees">{{emp}}</button>
+    </div>
+  </div>
+
+  <div class="bottom-container">
+    <button (click)="toggleIsAntresol()">Show Antresol</button>
+  </div>
 </div>
