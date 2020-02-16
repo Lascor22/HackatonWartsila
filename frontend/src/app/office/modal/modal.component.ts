@@ -3,7 +3,6 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef} from '@angula
 import {Location} from '@angular/common';
 import {DataService} from '../service/data.service';
 import {EmployeeDTO, EventDTO} from '../dto/DTOs';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {EventCreateComponent} from '../event-create/event-create.component';
 @Component({
   selector: 'app-modal',
@@ -35,17 +34,18 @@ export class ModalComponent implements OnInit {
 
   configurePopupWindow() {
     this.popupConfig = new MatDialogConfig();
-    this.popupConfig.disableClose = true;
+    this.popupConfig.disableClose = false;
     this.popupConfig.id = 'modal-component';
     this.popupConfig.height = '400px';
     this.popupConfig.width = '500px';
     this.popupConfig.maxHeight = '400px';
     this.popupConfig.id = 'modalwindow';
+    this.popupConfig.data = this.activeRoomNumber;
   }
 
   openEventCreateModal() {
     this.configurePopupWindow();
-    this.popupConfig.data = this.roomNumber;
+    this.popupConfig.data = this.activeRoomNumber;
     const modalDialog = this.matDialog.open(EventCreateComponent, this.popupConfig);
   }
 

@@ -8,6 +8,7 @@ import com.blagoy.officemaps.form.EventForm;
 import com.blagoy.officemaps.repository.EventRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,7 +37,8 @@ public class EventService {
     public void createEvent(EventForm eventForm, ObjectMap objectMap) {
         Event event = new Event();
         Employee creator = employeeService.findByName(eventForm.getCreator());
-        List<Employee> employees = eventForm.getEmployees().stream().map(name -> employeeService.findByName(name)).collect(Collectors.toList());
+//        List<Employee> employees = eventForm.getEmployees().stream().map(name -> employeeService.findByName(name)).collect(Collectors.toList());
+        List<Employee> employees = new ArrayList<>();
         event.setEmployeeList(employees);
         event.setObjectMap(objectMap);
         event.setName(eventForm.getName());

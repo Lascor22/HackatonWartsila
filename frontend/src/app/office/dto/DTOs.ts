@@ -25,8 +25,7 @@ export class EventDTO extends OfficeObjectDTO {
 }
 
 export class EventForm {
-  public objectMap: WorkingRoomDTO;
-  constructor(roomNumber: number,
+  constructor(public roomNumber: number,
               public creator: string,
               public name: string,
               public description: string) {

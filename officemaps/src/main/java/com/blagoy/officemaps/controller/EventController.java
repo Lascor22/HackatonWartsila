@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/api/0")
 public class EventController {
@@ -32,27 +33,27 @@ public class EventController {
     public void createEvent(@RequestBody EventForm eventForm) {
         ObjectMap objectMap = null, tempMap;
         try {
-            tempMap = workRoomService.findById(eventForm.getRoomId());
+            tempMap = workRoomService.findByNumber(eventForm.getRoomNumber());
             if (tempMap != null) {
                 objectMap = tempMap;
             }
         } catch (Exception e) {
 
         }
-        try {
-            tempMap = transitionService.findById(eventForm.getRoomId());
-            if (tempMap != null) {
-                objectMap = tempMap;
-            }
-        } catch (Exception e) {}
-        try {
-            tempMap = publicRoomService.findById(eventForm.getRoomId());
-            if (tempMap != null) {
-                objectMap = tempMap;
-            }
-        } catch (Exception e) {
-
-        }
+//        try {
+//            tempMap = transitionService.findById(eventForm.getRoomId());
+//            if (tempMap != null) {
+//                objectMap = tempMap;
+//            }
+//        } catch (Exception e) {}
+//        try {
+//            tempMap = publicRoomService.findById(eventForm.getRoomId());
+//            if (tempMap != null) {
+//                objectMap = tempMap;
+//            }
+//        } catch (Exception e) {
+//
+//        }
         eventService.createEvent(eventForm, objectMap);
     }
 

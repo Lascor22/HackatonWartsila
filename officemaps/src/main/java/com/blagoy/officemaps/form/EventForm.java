@@ -6,7 +6,6 @@ public class EventForm {
 
     private String creator;
     private String name;
-    private List<String> employees;
 
     public String getName() {
         return name;
@@ -24,15 +23,15 @@ public class EventForm {
         this.description = description;
     }
 
-    private long roomId;
+    private Long roomNumber;
     private String description;
 
-    public long getRoomId() {
-        return roomId;
+    public long getRoomNumber() {
+        return roomNumber;
     }
 
-    public void setRoomId(long roomId) {
-        this.roomId = roomId;
+    public void setRoomNumber(long roomNumber) {
+        this.roomNumber = roomNumber;
     }
 
     public String getCreator() {
@@ -41,13 +40,5 @@ public class EventForm {
 
     public void setCreator(String creator) {
         this.creator = creator;
-    }
-
-    public List<String> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(List<String> employees) {
-        this.employees = employees;
     }
 }
