@@ -9,7 +9,7 @@ import java.util.List;
 
 public class TransitionForm {
     private long floorNumber;
-    private TransitionType type;
+    private String type;
     private List<Door> doors;
     private List<ObjectMap> neighbors;
     private Point point;
@@ -24,11 +24,11 @@ public class TransitionForm {
         this.floorNumber = floorNumber;
     }
 
-    public TransitionType getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(TransitionType type) {
+    public void setType(String type) {
         this.type = type;
     }
 

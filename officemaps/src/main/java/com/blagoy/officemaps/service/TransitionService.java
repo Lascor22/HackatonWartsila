@@ -1,6 +1,8 @@
 package com.blagoy.officemaps.service;
 
-import com.blagoy.officemaps.domain.*;
+import com.blagoy.officemaps.domain.Door;
+import com.blagoy.officemaps.domain.Transition;
+import com.blagoy.officemaps.domain.TransitionType;
 import com.blagoy.officemaps.form.TransitionForm;
 import com.blagoy.officemaps.repository.ObjectMapRepository;
 import com.blagoy.officemaps.repository.TransitionRepository;
@@ -31,7 +33,13 @@ public class TransitionService extends ObjectMapService {
 
     public void createTransition(TransitionForm transitionForm) {
         Transition transition = new Transition();
-        transition.setType(transitionForm.getType());
+        if ("Corridor".equals(transitionForm.getType())) {
+            transition.setType(TransitionType.Corridor);
+        } else if ("Stairs".equals(transitionForm.getType())) {
+            transition.setType(TransitionType.Stairs);
+        } else {
+            transition.setType(TransitionType.Lift);
+        }
         transition.setFloorNumber(transitionForm.getFloorNumber());
         transition.setHeight(transitionForm.getHeight());
         transition.setWidth(transitionForm.getWidth());
