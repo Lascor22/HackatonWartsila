@@ -1,54 +1,32 @@
 package com.blagoy.officemaps.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-public class ObjectMap {
+public class ObjectMap implements Comparable<ObjectMap> {
     @Id
     @GeneratedValue
     private long id;
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @NotNull
+    private List<ObjectMap> neighbors;
+
     @OneToMany
     private List<Door> doors;
 
-    @NotNull
-    @NotEmpty
-    @JoinColumn(name = "coordinateX", nullable = false)
-    private double coordinateX;
+    @JoinColumn(name = "point", nullable = false)
+    @OneToOne
+    private Point point;
 
-    @NotNull
-    @NotEmpty
-    @JoinColumn(name = "coordinateX", nullable = false)
-    private double coordinateY;
-
-    @NotNull
-    @NotEmpty
     @JoinColumn(name = "height", nullable = false)
     private double height;
 
-    @NotNull
-    @NotEmpty
     @JoinColumn(name = "width", nullable = false)
     private double width;
 
-    public double getCoordinateX() {
-        return coordinateX;
-    }
-
-    public void setCoordinateX(double coordinateX) {
-        this.coordinateX = coordinateX;
-    }
-
-    public double getCoordinateY() {
-        return coordinateY;
-    }
-
-    public void setCoordinateY(double coordinateY) {
-        this.coordinateY = coordinateY;
-    }
 
     public double getHeight() {
         return height;
@@ -81,5 +59,26 @@ public class ObjectMap {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    @Override
+    public int compareTo(ObjectMap another) {
+        return Long.compare(this.id, another.getId());
+    }
+
+    public Point getPoint() {
+        return point;
+    }
+
+    public void setPoint(Point point) {
+        this.point = point;
+    }
+
+    public List<ObjectMap> getNeighbors() {
+        return neighbors;
+    }
+
+    public void setNeighbors(List<ObjectMap> neighbors) {
+        this.neighbors = neighbors;
     }
 }
