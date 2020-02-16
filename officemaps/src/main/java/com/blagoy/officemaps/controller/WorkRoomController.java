@@ -2,11 +2,9 @@ package com.blagoy.officemaps.controller;
 
 
 import com.blagoy.officemaps.domain.WorkRoom;
+import com.blagoy.officemaps.service.FloorService;
 import com.blagoy.officemaps.service.WorkRoomService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,9 +12,11 @@ import java.util.List;
 @RequestMapping("/api/0")
 public class WorkRoomController {
     private final WorkRoomService workRoomService;
+    private final FloorService floorService;
 
-    public WorkRoomController(WorkRoomService workRoomService) {
+    public WorkRoomController(WorkRoomService workRoomService, FloorService floorService) {
         this.workRoomService = workRoomService;
+        this.floorService = floorService;
     }
 
     @GetMapping("workingrooms")
@@ -32,5 +32,10 @@ public class WorkRoomController {
     @GetMapping("workingroom/number/{number}")
     public WorkRoom findByNumber(@PathVariable("number") long number) {
         return workRoomService.findByNumber(number);
+    }
+
+    @PostMapping("workingroom")
+    public void createWorkingRoom(long number, long floorNumber, double x, double y, double height, double width) {
+        workRoomService.createWorkRoom(number, floorService.findByNumber(number), x, y, height, width);
     }
 }

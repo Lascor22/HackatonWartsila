@@ -22,6 +22,14 @@ public class Employee {
     @OneToOne
     private WorkingTable workingTable;
 
+    public WorkRoom getWorkRoom() {
+        return workRoom;
+    }
+
+    public void setWorkRoom(WorkRoom workRoom) {
+        this.workRoom = workRoom;
+    }
+
     @ManyToOne(fetch = FetchType.LAZY)
     private WorkRoom workRoom;
 

@@ -2,11 +2,9 @@ package com.blagoy.officemaps.controller;
 
 import com.blagoy.officemaps.domain.Employee;
 import com.blagoy.officemaps.domain.WorkingTable;
+import com.blagoy.officemaps.service.WorkRoomService;
 import com.blagoy.officemaps.service.WorkingTableService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,9 +12,11 @@ import java.util.List;
 @RequestMapping("/api/0")
 public class WorkingTableController {
     private final WorkingTableService workingTableService;
+    private final WorkRoomService workRoomService;
 
-    public WorkingTableController(WorkingTableService workingTableService) {
+    public WorkingTableController(WorkingTableService workingTableService, WorkRoomService workRoomService) {
         this.workingTableService = workingTableService;
+        this.workRoomService = workRoomService;
     }
 
     @GetMapping("workingTables")
@@ -32,6 +32,11 @@ public class WorkingTableController {
     @GetMapping("workingTable/{number}/employee")
     public Employee getEmployeeByWorkingTableNumber(@PathVariable("number") long number) {
         return workingTableService.findByNumber(number).getEmployee();
+    }
+
+    @PostMapping("workingTable")
+    public void createWorkingTable(long number, long roomNumber) {
+        workingTableService.createWorkingTable(number, workRoomService.findByNumber(roomNumber));
     }
 
 }

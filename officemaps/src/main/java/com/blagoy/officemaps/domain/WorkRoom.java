@@ -4,16 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "number"))
-public class WorkRoom extends ObjectMap{
-    @NotNull
-    @NotEmpty
+public class WorkRoom extends ObjectMap {
+
     @JoinColumn(name = "number", nullable = false)
     private long number;
 
@@ -28,19 +25,13 @@ public class WorkRoom extends ObjectMap{
     @CreationTimestamp
     private Date creationTime;
 
-    @NotEmpty
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private Floor floor;
 
-    @NotEmpty
-    @NotNull
     @OneToMany(mappedBy = "workRoom", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Employee> employees;
 
-    @NotNull
-    @NotEmpty
     @OneToMany(mappedBy = "workRoom", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<WorkingTable> workingTables;
 

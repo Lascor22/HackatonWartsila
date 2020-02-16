@@ -1,6 +1,7 @@
 package com.blagoy.officemaps.service;
 
 import com.blagoy.officemaps.domain.Floor;
+import com.blagoy.officemaps.domain.Point;
 import com.blagoy.officemaps.domain.PublicRoom;
 import com.blagoy.officemaps.domain.PublicRoomType;
 import com.blagoy.officemaps.repository.PublicRoomRepository;
@@ -26,8 +27,10 @@ public class PublicRoomService {
 
     public void createRoom(Floor floor, PublicRoomType publicRoomType, double x, double y, double height, double width) {
         PublicRoom publicRoom = new PublicRoom();
-        publicRoom.setCoordinateX(x);
-        publicRoom.setCoordinateY(y);
+        Point point = new Point();
+        point.setX(x);
+        point.setY(y);
+        publicRoom.setPoint(point);
         publicRoom.setHeight(height);
         publicRoom.setWidth(width);
         publicRoom.setFloor(floor);

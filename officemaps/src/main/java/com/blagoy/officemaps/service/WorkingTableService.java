@@ -1,5 +1,6 @@
 package com.blagoy.officemaps.service;
 
+import com.blagoy.officemaps.domain.WorkRoom;
 import com.blagoy.officemaps.domain.WorkingTable;
 import com.blagoy.officemaps.repository.WorkingTableRepository;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,12 @@ public class WorkingTableService {
 
     public WorkingTable findByNumber(long number) {
         return workingTableRepository.findByNumber(number);
+    }
+
+    public void createWorkingTable(long number, WorkRoom workRoom) {
+        WorkingTable workingTable = new WorkingTable();
+        workingTable.setNumber(number);
+        workingTable.setWorkRoom(workRoom);
+        workingTableRepository.save(workingTable);
     }
 }

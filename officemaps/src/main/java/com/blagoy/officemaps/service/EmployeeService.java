@@ -1,6 +1,8 @@
 package com.blagoy.officemaps.service;
 
 import com.blagoy.officemaps.domain.Employee;
+import com.blagoy.officemaps.domain.WorkRoom;
+import com.blagoy.officemaps.domain.WorkingTable;
 import com.blagoy.officemaps.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +24,13 @@ public class EmployeeService {
     public Employee findById(long id) {
         Optional<Employee> userOptional = employeeRepository.findById(id);
         return userOptional.orElse(null);
+    }
+
+    public void createEmployee(String name, WorkRoom workRoom, WorkingTable workingTable) {
+        Employee employee = new Employee();
+        employee.setName(name);
+        employee.setWorkingTable(workingTable);
+        employee.setWorkRoom(workRoom);
+        employeeRepository.save(employee);
     }
 }

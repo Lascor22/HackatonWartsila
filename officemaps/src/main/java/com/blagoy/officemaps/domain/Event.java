@@ -3,8 +3,6 @@ package com.blagoy.officemaps.domain;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -17,6 +15,17 @@ public class Event {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Employee> employeeList;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ObjectMap objectMap;
+
+    public ObjectMap getObjectMap() {
+        return objectMap;
+    }
+
+    public void setObjectMap(ObjectMap objectMap) {
+        this.objectMap = objectMap;
+    }
 
     public Date getCreationTime() {
         return creationTime;

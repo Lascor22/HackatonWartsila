@@ -38,6 +38,8 @@ public class PublicRoomController {
         } else {
             publicRoomType = PublicRoomType.CoffeePoint;
         }
+
+
         publicRoomService.createRoom(floorService.findByNumber(floorNumber), publicRoomType, x, y, height, width);
     }
 
