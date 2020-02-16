@@ -27,7 +27,8 @@ public class WorkRoom extends ObjectMap {
 
     private long floorNumber;
 
-    @OneToMany(mappedBy = "workRoom", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "workRoom", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Employee> employees;
 
     @OneToMany(fetch = FetchType.LAZY)

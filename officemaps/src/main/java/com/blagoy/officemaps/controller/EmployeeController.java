@@ -2,7 +2,6 @@ package com.blagoy.officemaps.controller;
 
 
 import com.blagoy.officemaps.domain.Employee;
-import com.blagoy.officemaps.domain.WorkRoom;
 import com.blagoy.officemaps.form.EmployeeForm;
 import com.blagoy.officemaps.service.EmployeeService;
 import com.blagoy.officemaps.service.WorkRoomService;
@@ -21,7 +20,7 @@ public class EmployeeController {
         this.workRoomService = workRoomService;
     }
 
-    @GetMapping("employee")
+    @GetMapping("employees")
     public List<Employee> findAll() {
         return employeeService.findAll();
     }
@@ -31,8 +30,8 @@ public class EmployeeController {
         return employeeService.findById(id);
     }
 
-    @GetMapping("employee/{name}")
-    public Employee findByName(@PathVariable("name") String name) {
+    @GetMapping("employee")
+    public Employee findByName(@RequestParam String name) {
         return employeeService.findByName(name);
     }
 

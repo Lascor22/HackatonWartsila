@@ -23,7 +23,7 @@ public class PublicRoomController {
         this.floorService = floorService;
     }
 
-    @GetMapping("publicRoom")
+    @GetMapping("publicRooms")
     public List<PublicRoom> findAll() {
         return publicRoomService.findAll();
     }
