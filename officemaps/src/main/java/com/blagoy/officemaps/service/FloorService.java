@@ -25,4 +25,8 @@ public class FloorService {
     public Floor findByNumber(long number) {
         return floorRepository.findByNumber(number);
     }
+
+    public void save(Floor floor) {
+        floorRepository.save(floor);
+    }
 }
