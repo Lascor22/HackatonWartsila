@@ -8,17 +8,21 @@ import com.blagoy.officemaps.repository.ObjectMapRepository;
 import com.blagoy.officemaps.repository.TransitionRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class TransitionService extends ObjectMapService {
     private final TransitionRepository transitionRepository;
     private final DoorService doorService;
+    private final PointService pointService;
 
-    public TransitionService(ObjectMapRepository objectMapRepository, TransitionRepository transitionRepository, DoorService doorService) {
+    public TransitionService(ObjectMapRepository objectMapRepository, TransitionRepository transitionRepository,
+                             DoorService doorService, PointService pointService) {
         super(objectMapRepository);
         this.transitionRepository = transitionRepository;
         this.doorService = doorService;
+        this.pointService = pointService;
     }
 
     @Override
@@ -45,10 +49,13 @@ public class TransitionService extends ObjectMapService {
         transition.setWidth(transitionForm.getWidth());
         transition.setPoint(transitionForm.getPoint());
         transition.setDoors(transitionForm.getDoors());
+        transition.setEvents(new ArrayList<>());
         transition.setNeighbors(transitionForm.getNeighbors());
+        pointService.save(transitionForm.getPoint());
         for (Door door : transition.getDoors()) {
             doorService.save(door);
         }
+
         transitionRepository.save(transition);
     }
 }

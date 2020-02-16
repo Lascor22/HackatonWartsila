@@ -3,7 +3,6 @@ package com.blagoy.officemaps.form;
 import com.blagoy.officemaps.domain.Door;
 import com.blagoy.officemaps.domain.ObjectMap;
 import com.blagoy.officemaps.domain.Point;
-import com.blagoy.officemaps.domain.TransitionType;
 
 import java.util.List;
 
