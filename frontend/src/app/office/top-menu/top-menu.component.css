@@ -1,6 +1,9 @@
 .top-menu {
+  display: flex;
+  justify-content: center;
   height: auto;
   margin-bottom: 70px;
+  padding-top: 20px;
 }
 
 mat-icon {
