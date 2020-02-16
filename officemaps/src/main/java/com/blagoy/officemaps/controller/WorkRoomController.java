@@ -1,9 +1,8 @@
 package com.blagoy.officemaps.controller;
 
 
-import com.blagoy.officemaps.domain.Door;
-import com.blagoy.officemaps.domain.ObjectMap;
 import com.blagoy.officemaps.domain.WorkRoom;
+import com.blagoy.officemaps.form.WorkRoomForm;
 import com.blagoy.officemaps.service.FloorService;
 import com.blagoy.officemaps.service.WorkRoomService;
 import org.springframework.web.bind.annotation.*;
@@ -21,25 +20,23 @@ public class WorkRoomController {
         this.floorService = floorService;
     }
 
-    @GetMapping("workingrooms")
+    @GetMapping("workrooms")
     public List<WorkRoom> findAll() {
         return workRoomService.findAll();
     }
 
-    @GetMapping("workingroom/id/{id}")
+    @GetMapping("workroom/id/{id}")
     public WorkRoom findById(@PathVariable("id") long id) {
         return workRoomService.findById(id);
     }
 
-    @GetMapping("workingroom/number/{number}")
+    @GetMapping("workroom/number/{number}")
     public WorkRoom findByNumber(@PathVariable("number") long number) {
         return workRoomService.findByNumber(number);
     }
 
-    @PostMapping("workingroom")
-    public void createWorkingRoom(long number, long floorNumber, double x, double y, double height, double width,
-                                  List<Door> doors, List<ObjectMap> neighbors) {
-        workRoomService.createWorkRoom(number, floorService.findByNumber(floorNumber), x, y, height, width, doors,
-                neighbors);
+    @PostMapping("workroom")
+    public void createWorkingRoom(@RequestBody WorkRoomForm workRoomForm) {
+        workRoomService.createWorkRoom(workRoomForm, floorService.findByNumber(workRoomForm.getFloorNumber()));
     }
 }

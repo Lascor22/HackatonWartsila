@@ -1,6 +1,10 @@
 package com.blagoy.officemaps.service;
 
-import com.blagoy.officemaps.domain.*;
+import com.blagoy.officemaps.domain.Employee;
+import com.blagoy.officemaps.domain.Floor;
+import com.blagoy.officemaps.domain.WorkRoom;
+import com.blagoy.officemaps.domain.WorkingTable;
+import com.blagoy.officemaps.form.WorkRoomForm;
 import com.blagoy.officemaps.repository.WorkRoomRepository;
 import org.springframework.stereotype.Service;
 
@@ -41,19 +45,15 @@ public class WorkRoomService {
         return findByNumber(number).getEmployees();
     }
 
-    public void createWorkRoom(long number, Floor floor, double x, double y, double height, double width,
-                               List<Door> doors, List<ObjectMap> neighbors) {
+    public void createWorkRoom(WorkRoomForm workRoomForm, Floor floor) {
         WorkRoom workRoom = new WorkRoom();
-        Point point = new Point();
-        point.setX(x);
-        point.setY(y);
-        workRoom.setNumber(number);
-        workRoom.setPoint(point);
+        workRoom.setNumber(workRoomForm.getNumber());
+        workRoom.setPoint(workRoomForm.getPoint());
         workRoom.setFloor(floor);
-        workRoom.setWidth(width);
-        workRoom.setHeight(height);
-        workRoom.setDoors(doors);
-        workRoom.setNeighbors(neighbors);
+        workRoom.setWidth(workRoomForm.getWidth());
+        workRoom.setHeight(workRoomForm.getHeight());
+        workRoom.setDoors(workRoomForm.getDoors());
+        workRoom.setNeighbors(workRoomForm.getNeighbors());
         workRoomRepository.save(workRoom);
     }
 }
